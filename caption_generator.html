@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图图片字幕生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .control-panel {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .color-pickers {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .color-picker-group {
+            flex: 1;
+        }
+        
+        .color-picker-group input[type="color"] {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #generateBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        #generateBtn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        #saveBtn {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        #saveBtn:hover {
+            background-color: #0b7dda;
+            transform: translateY(-2px);
+        }
+        
+        .preview-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .preview-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .preview-container {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+        
+        #previewImage {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        canvas {
+            display: none;
+        }
+        
+        .watermark-options {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+        }
+        
+        .watermark-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .watermark-options input[type="checkbox"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>图图片字幕生成器</h1>
+        
+        <div class="input-section">
+            <div class="control-panel">
+                <div class="form-group">
+                    <label for="imageUpload">选择文件</label>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    <button type="button" id="selectFileBtn" style="background-color: #6c757d; color: white;">选择图片</button>
+                    <span id="fileName" style="margin-left: 10px; color: #666;">未选择文件</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>参数设置</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <label for="charHeight">字符高度(px)</label>
+                            <input type="number" id="charHeight" value="40" min="10" max="100">
+                        </div>
+                        <div>
+                            <label for="fontSize">字体大小(px)</label>
+                            <input type="number" id="fontSize" value="20" min="5" max="50">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>颜色设置</label>
+                    <div class="color-pickers">
+                        <div class="color-picker-group">
+                            <label for="fontColor">字体颜色</label>
+                            <input type="color" id="fontColor" value="#33ccff">
+                        </div>
+                        <div class="color-picker-group">
+                            <label for="strokeColor">轮廓颜色</label>
+                            <input type="color" id="strokeColor" value="#000000">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="captionText">字幕文本</label>
+                    <textarea id="captionText" placeholder="请输入要显示的字幕内容...">别吵
+我在给自己写钓鱼网站呢
+对，这年头
+咱们猫咪都能自己写代码了</textarea>
+                </div>
+                
+                <div class="buttons">
+                    <button id="generateBtn">生成字幕图片</button>
+                    <button id="saveBtn" disabled>保存图片</button>
+                </div>
+                
+                <div class="watermark-options">
+                    <label><input type="checkbox" id="showRightTopWatermark" checked> 显示右上角水印</label>
+                    <label><input type="checkbox" id="showRightBottomWatermark" checked> 显示右下角水印</label>
+                    <div style="margin-top: 10px;">
+                        <label for="rightTopWatermark">右上角水印文本</label>
+                        <input type="text" id="rightTopWatermark" value="南瓜博士">
+                    </div>
+                    <div>
+                        <label for="rightBottomWatermark">右下角水印文本</label>
+                        <input type="text" id="rightBottomWatermark" value="公众号 - 南瓜博士">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <h2>预览效果</h2>
+                <div class="preview-container">
+                    <img id="previewImage" style="display: none;">
+                    <p id="previewPlaceholder">请选择图片并生成字幕</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+    
+    <script>
+        // 获取DOM元素
+        const imageUpload = document.getElementById('imageUpload');
+        const selectFileBtn = document.getElementById('selectFileBtn');
+        const fileName = document.getElementById('fileName');
+        const charHeight = document.getElementById('charHeight');
+        const fontSize = document.getElementById('fontSize');
+        const fontColor = document.getElementById('fontColor');
+        const strokeColor = document.getElementById('strokeColor');
+        const captionText = document.getElementById('captionText');
+        const generateBtn = document.getElementById('generateBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const previewImage = document.getElementById('previewImage');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const showRightTopWatermark = document.getElementById('showRightTopWatermark');
+        const showRightBottomWatermark = document.getElementById('showRightBottomWatermark');
+        const rightTopWatermark = document.getElementById('rightTopWatermark');
+        const rightBottomWatermark = document.getElementById('rightBottomWatermark');
+        
+        let originalImage = null;
+        
+        // 事件监听
+        selectFileBtn.addEventListener('click', () => {
+            imageUpload.click();
+        });
+        
+        imageUpload.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const file = e.target.files[0];
+                fileName.textContent = file.name;
+                
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        originalImage = img;
+                        // 显示原图预览
+                        previewImage.src = event.target.result;
+                        previewImage.style.display = 'block';
+                        previewPlaceholder.style.display = 'none';
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        generateBtn.addEventListener('click', generateCaptionImage);
+        saveBtn.addEventListener('click', saveImage);
+        
+        // 生成字幕图片
+        function generateCaptionImage() {
+            if (!originalImage) {
+                alert('请先选择图片！');
+                return;
+            }
+            
+            const text = captionText.value.trim();
+            if (!text) {
+                alert('请输入字幕文本！');
+                return;
+            }
+            
+            // 设置Canvas尺寸
+            const imgWidth = originalImage.width;
+            const imgHeight = originalImage.height;
+            
+            // 计算字幕区域高度 - 模仿参考图片效果
+            const lines = text.split('\n');
+            const lineHeight = parseInt(charHeight.value) || 40;
+            
+            // 设置Canvas尺寸，包含原图和字幕区域
+            canvas.width = imgWidth;
+            canvas.height = imgHeight + lineHeight * lines.length;
+            
+            // 绘制原始图片
+            ctx.drawImage(originalImage, 0, 0);
+            
+            // 创建临时canvas用于保存图片切片
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = imgWidth;
+            tempCanvas.height = lineHeight;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // 为每行字幕创建独立的背景区域
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const currentY = imgHeight + i * lineHeight;
+                
+                // 复制原图底部相应位置的图片切片
+                // 对于所有行，都使用原图底部的切片
+                const sliceY = Math.max(0, imgHeight - lineHeight);
+                tempCtx.clearRect(0, 0, imgWidth, lineHeight);
+                tempCtx.drawImage(originalImage, 0, sliceY, imgWidth, lineHeight, 0, 0, imgWidth, lineHeight);
+                
+                // 绘制图片背景到Canvas
+                ctx.drawImage(tempCanvas, 0, currentY);
+                
+                // 移除背景颜色，让字幕直接显示在图片背景上
+                
+                // 绘制白色文字带黑色描边
+                const fontSizeVal = parseInt(fontSize.value) || 20;
+                ctx.font = fontSizeVal + 'px Microsoft YaHei, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // 计算文字位置，稍微偏上以获得更好的视觉效果
+                const textY = currentY + lineHeight / 2;
+                
+                // 绘制文字描边
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = fontSizeVal / 8;
+                ctx.strokeText(line, imgWidth / 2, textY);
+                
+                // 绘制文字填充 - 使用和参考图片一样的青蓝色
+                ctx.fillStyle = '#33ccff';
+                ctx.fillText(line, imgWidth / 2, textY);
+                
+                // 绘制分割线（除了最后一行）
+                if (i < lines.length - 1) {
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, currentY + lineHeight - 0.5);
+                    ctx.lineTo(imgWidth, currentY + lineHeight - 0.5);
+                    ctx.stroke();
+                }
+            }
+            
+            // 绘制水印
+            // 绘制右上角水印
+            if (showRightTopWatermark.checked && rightTopWatermark.value.trim()) {
+                drawWatermark(rightTopWatermark.value, imgWidth - 20, 30, 'top-right');
+            }
+            
+            // 绘制右下角水印
+            if (showRightBottomWatermark.checked && rightBottomWatermark.value.trim()) {
+                drawWatermark(rightBottomWatermark.value, imgWidth - 20, canvas.height - 20, 'bottom-right');
+            }
+            
+            // 更新预览
+            previewImage.src = canvas.toDataURL('image/png');
+            
+            // 启用保存按钮
+            saveBtn.disabled = false;
+        }
+        
+        // 绘制带描边的文字
+        function drawTextWithStroke(text, x, y, size, fillColor, strokeColor) {
+            ctx.font = size + 'px Microsoft YaHei, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 绘制描边
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = size / 10;
+            ctx.strokeText(text, x, y);
+            
+            // 绘制填充文字
+            ctx.fillStyle = fillColor;
+            ctx.fillText(text, x, y);
+        }
+        
+        // 绘制带图片背景的文字（每个字母都使用相同的图片背景）
+        function drawTextWithImageBackground(text, x, y, size, fillColor, strokeColor, imageCanvas) {
+            ctx.font = size + 'px Microsoft YaHei, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 计算整行文字的宽度
+            const textWidth = ctx.measureText(text).width;
+            
+            // 计算每个字符的位置
+            const startX = x - textWidth / 2;
+            
+            // 为每个字符分别绘制带图片背景的效果
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const charWidth = ctx.measureText(char).width;
+                const charX = startX + ctx.measureText(text.substring(0, i)).width + charWidth / 2;
+                
+                // 保存当前状态
+                ctx.save();
+                
+                // 绘制图片背景（稍微大一点的区域）
+                const bgPadding = size / 5;
+                const bgWidth = charWidth + bgPadding * 2;
+                const bgHeight = size + bgPadding * 2;
+                const bgX = charX - bgWidth / 2;
+                const bgY = y - bgHeight / 2;
+                
+                // 直接绘制图片背景
+                ctx.drawImage(imageCanvas, bgX, bgY, bgWidth, bgHeight);
+                
+                // 恢复状态
+                ctx.restore();
+                
+                // 绘制文字描边
+                ctx.strokeStyle = strokeColor;
+                ctx.lineWidth = size / 8; // 加粗描边以确保在复杂背景上的可读性
+                ctx.strokeText(char, charX, y);
+                
+                // 绘制文字填充
+                ctx.fillStyle = fillColor;
+                ctx.fillText(char, charX, y);
+            }
+        }
+        
+        // 绘制水印
+        function drawWatermark(text, x, y, position) {
+            const watermarkSize = 14;
+            ctx.font = watermarkSize + 'px Microsoft YaHei, Arial, sans-serif';
+            
+            if (position === 'top-right' || position === 'bottom-right') {
+                ctx.textAlign = 'right';
+            }
+            
+            if (position === 'bottom-right' || position === 'bottom-left') {
+                ctx.textBaseline = 'bottom';
+            } else {
+                ctx.textBaseline = 'top';
+            }
+            
+            // 半透明白色文字，带黑色描边
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+            ctx.lineWidth = 1;
+            ctx.strokeText(text, x, y);
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillText(text, x, y);
+        }
+        
+        // 保存图片
+        function saveImage() {
+            const link = document.createElement('a');
+            link.download = 'caption_image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>

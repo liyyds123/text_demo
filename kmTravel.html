@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五一郑州4日游攻略</title>
+    <!-- 使用本地样式和CDN的降级方案 -->
+    <style>
+        /* 基础重置和响应式布局 */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        .col-md-3, .col-md-6, .col-lg-6 {
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+        .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+        .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+        .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+        
+        /* 表单样式 */
+        .form-select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { background-color: #3498db; color: white; }
+        .btn-success { background-color: #2ecc71; color: white; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .me-2 { margin-right: 8px; }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .col-md-3, .col-md-6, .col-lg-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .text-md-end { text-align: left !important; }
+        }
+        
+        /* 图标样式 */
+        .fas {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background-color: currentColor;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+        }
+        .fa-map-marked-alt { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42z'/%3E%3Cpath d='M528.12 309.38C538.48 321.8 534.25 338.72 521.8 349.08L269.42 513.58c-12.07 10.54-30.13 10.54-42.2 0L54.2 349.08c-12.45-10.36-16.68-27.28-6.32-39.7C63.48 303.19 107.66 256 160.24 256h255.52c52.58 0 96.76 47.19 102.38 53.38zM464 216c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40z'/%3E%3C/svg%3E"); }
+        .fa-taxi { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M569.15 180.56L502.37 73.47A48.003 48.003 0 0 0 458.62 32H117.38c-23.18 0-44.53 14.16-53.75 37.47L6.85 180.56A47.994 47.994 0 0 0 0 224v176c0 26.51 21.49 48 48 48h80v-48c0-8.84 7.16-16 16-16s16 7.16 16 16v48h256v-48c0-8.84 7.16-16 16-16s16 7.16 16 16v48h80c26.51 0 48-21.49 48-48V224c0-21.7-13.25-41.54-33.85-43.44zM152 272c-13.25 0-24-10.75-24-24s10.75-24 24-24 24 10.75 24 24-10.75 24-24 24zm272 0c-13.25 0-24-10.75-24-24s10.75-24 24-24 24 10.75 24 24-10.75 24-24 24zM512 224H64v-48l51.31 102.63c2.43 4.86 7.28 8.37 12.69 8.37h341.94c5.41 0 10.26-3.51 12.69-8.37L512 176v48z'/%3E%3C/svg%3E"); }
+        .fa-lightbulb { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath d='M176 80c-52.94 0-96 43.06-96 96 0 8.84 7.16 16 16 16s16-7.16 16-16c0-35.3 28.71-64 64-64 8.84 0 16-7.16 16-16s-7.16-16-16-16zm35.66 168.15c-25.08-20.06-64.97-19.31-90.07 1.56-4.88 3.91-6.53 10.59-3.78 16.24l14.4 28.8c2.76 5.55 9.3 8.81 15.12 7.44 17.52-4.36 35.43-6.71 53.65-6.71 70.58 0 128 57.42 128 128 0 17.67-14.33 32-32 32h-192c-17.67 0-32-14.33-32-32 0-105.87 86.13-192 192-192 8.84 0 16 7.16 16 16s-7.16 16-16 16c-61.76 0-112 50.24-112 112 0 8.84 7.16 16 16 16s16-7.16 16-16c0-26.47 21.53-48 48-48 2.76 0 5.51.11 8.23.32l25.77 128.87c2.61 13.04 15.2 21.81 28.53 21.81h.14c13.33 0 25.92-8.77 28.53-21.81L292.8 288H320c8.84 0 16-7.16 16-16s-7.16-16-16-16h-21.35l-29.99-143.85z'/%3E%3C/svg%3E"); }
+        .fa-info-circle { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm153.626-329.334l-16.062-16.061c-4.686-4.686-12.284-4.686-16.971 0L256 208.029l-70.655-70.655c-4.686-4.686-12.284-4.686-16.971 0l-16.062 16.061c-4.686 4.686-4.686 12.284 0 16.971l96.061 96.06c4.686 4.686 12.284 4.686 16.971 0l96.061-96.06c4.687-4.687 4.687-12.285 0-16.971z'/%3E%3C/svg%3E"); }
+        .fa-subway { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M560 240c0-26.51-21.49-48-48-48h-8V80c0-26.51-21.49-48-48-48H112C85.49 32 64 53.49 64 80v112H48c-26.51 0-48 21.49-48 48s21.49 48 48 48h8v144c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V288h8c26.51 0 48-21.49 48-48zM160 96h256v64H160V96zm272 320H144V288h288v128zM192 336c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm192 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z'/%3E%3C/svg%3E"); }
+        .fa-bus { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M486.445 118.188h-47.716c-2.702 0-4.885 2.183-4.885 4.885v43.97c0 2.702 2.183 4.885 4.885 4.885h47.716c2.702 0 4.885-2.183 4.885-4.885v-43.97c0-2.702-2.183-4.885-4.885-4.885zM486.445 198.188h-47.716c-2.702 0-4.885 2.183-4.885 4.885v137.447c0 2.702 2.183 4.885 4.885 4.885h47.716c2.702 0 4.885-2.183 4.885-4.885v-137.447c0-2.702-2.183-4.885-4.885-4.885zM64 118.188H16.284c-2.702 0-4.885 2.183-4.885 4.885v43.97c0 2.702 2.183 4.885 4.885 4.885H64c2.702 0 4.885-2.183 4.885-4.885v-43.97c0-2.702-2.183-4.885-4.885-4.885zM64 198.188H16.284c-2.702 0-4.885 2.183-4.885 4.885v137.447c0 2.702 2.183 4.885 4.885 4.885H64c2.702 0 4.885-2.183 4.885-4.885v-137.447c0-2.702-2.183-4.885-4.885-4.885zM212.887 336c-11.046 0-20-8.954-20-20 0-11.046 8.954-20 20-20 11.046 0 20 8.954 20 20 0 11.046-8.954 20-20 20zM356.887 336c-11.046 0-20-8.954-20-20 0-11.046 8.954-20 20-20 11.046 0 20 8.954 20 20 0 11.046-8.954 20-20 20zM512 96v272c0 8.837-7.163 16-16 16H256V96h240c8.837 0 16 7.163 16 16zm-266.887 304c29.405 0 53.333-23.929 53.333-53.333 0-29.405-23.929-53.334-53.333-53.334s-53.333 23.929-53.333 53.334c0 29.404 23.929 53.333 53.333 53.333zM54.284 158.188h4.885v219.623H16.284V163.073c0-2.702 2.183-4.885 4.885-4.885h33.115zM509.445 158.188h-33.115c-2.702 0-4.885 2.183-4.885 4.885v214.733h38.001V163.073c0-2.702-2.183-4.885-4.886-4.885zM480 96H384V256H128V96H32C14.327 96 0 110.327 0 128v256c0 17.673 14.327 32 32 32h448c17.673 0 32-14.327 32-32V128c0-17.673-14.327-32-32-32zm-16 320H48V128h416v288z'/%3E%3C/svg%3E"); }
+        .fa-info-circle { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm153.626-329.334l-16.062-16.061c-4.686-4.686-12.284-4.686-16.971 0L256 208.029l-70.655-70.655c-4.686-4.686-12.284-4.686-16.971 0l-16.062 16.061c-4.686 4.686-4.686 12.284 0 16.971l96.061 96.06c4.686 4.686 12.284 4.686 16.971 0l96.061-96.06c4.687-4.687 4.687-12.285 0-16.971z'/%3E%3C/svg%3E"); }
+        .fa-shopping-bag { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zM224 106c33.084 0 60 26.916 60 60s-26.916 60-60 60-60-26.916-60-60 26.916-60 60-60zm214.627 254.961C387.42 418.578 356.258 432 323.85 432H124.149c-32.408 0-63.569-13.421-84.777-37.039C27.748 386.365 16 355.362 16 320h416c0 35.363-11.748 66.365-31.373 90.961z'/%3E%3C/svg%3E"); }
+        .fa-times { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.19 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.19 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'/%3E%3C/svg%3E"); }
+        .fa-sun { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c12.8-6.4 12.8-24.6 0-31zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z'/%3E%3C/svg%3E"); }
+        .fa-cloud-sun { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M384 352c-44.2 0-80 35.8-80 80s35.8 80 80 80 80-35.8 80-80-35.8-80-80-80zm209.7-82.8c-11.4-5.2-24.3-3.9-34.6 3.4l-176 128c-10.2 7.4-11.5 22.1-3 32.2 8.5 10.2 23.2 11.5 32.2 3l176-128c6.6-4.8 10.5-12.6 10.5-21 0-10.7-5.8-20.5-15.3-25.2zm-393.1 0c-9.5 4.7-15.3 14.5-15.3 25.2 0 8.4 3.9 16.2 10.5 21l176 128c9 8.5 23.7 7.2 32.2-3 8.5-10.2 7.1-24.8-3-32.2l-176-128c-10.3-7.3-23.2-8.6-34.6-3.4zM160 128c0-53 43-96 96-96s96 43 96 96c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-35.3-28.7-64-64-64s-64 28.7-64 64c0 8.8-7.2 16-16 16s-16-7.2-16-16zm352 96c-8.8 0-16-7.2-16-16c0-35.3-28.7-64-64-64s-64 28.7-64 64c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-53 43-96 96-96s96 43 96 96c0 8.8-7.2 16-16 16z'/%3E%3C/svg%3E"); }
+        .fa-cloud { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M537.6 226.6c4.1-10.7 6.4-22.4 6.4-34.6 0-53-43-96-96-96-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32c-70.7 0-128 57.3-128 128 0 70.7 57.3 128 128 128h384c35.3 0 64-28.7 64-64 0-26.6-15.3-49.9-38.4-61.4z'/%3E%3C/svg%3E"); }
+    </style>
+    <script>
+        // 简单的下拉菜单实现
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    const navbarNav = document.getElementById('navbarNav');
+                    if (navbarNav) {
+                        navbarNav.classList.toggle('collapse');
+                        navbarNav.classList.toggle('show');
+                    }
+                });
+            }
+        });
+    </script>
+    <style>
+          /* 全局样式 */
+          body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              line-height: 1.6;
+              color: #333;
+              background-color: #f8f9fa;
+          }
+          
+          /* 导航栏样式 */
+          .navbar {
+              background-color: #fff;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+              padding: 15px 0;
+          }
+          .navbar-brand {
+              font-size: 1.5rem;
+              font-weight: bold;
+              color: #3498db;
+              text-decoration: none;
+          }
+          .nav-link {
+              color: #555;
+              text-decoration: none;
+              margin: 0 10px;
+              transition: color 0.3s;
+          }
+          .nav-link:hover {
+              color: #3498db;
+          }
+          .navbar-nav {
+              display: flex;
+              align-items: center;
+          }
+          .collapse:not(.show) {
+              display: none;
+          }
+          .collapse.show {
+              display: block;
+          }
+          .navbar-collapse {
+              flex-grow: 1;
+          }
+          .text-md-end {
+              text-align: right;
+          }
+          
+          /* 标题样式 */
+          h1, h2, h3, h4, h5, h6 {
+              font-weight: 600;
+              margin-bottom: 1rem;
+              color: #2c3e50;
+          }
+          h1 { font-size: 2.5rem; }
+          h2 { font-size: 2rem; }
+          h3 { font-size: 1.5rem; }
+          
+          /* 卡片样式 */
+          .card {
+              background-color: white;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+              transition: transform 0.3s, box-shadow 0.3s;
+              margin-bottom: 20px;
+          }
+          .card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+          }
+          .card-img-top {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+          }
+          .card-body {
+              padding: 20px;
+          }
+          .card-title {
+              font-size: 1.25rem;
+              margin-bottom: 10px;
+          }
+          .card-text {
+              color: #666;
+              margin-bottom: 15px;
+          }
+          
+          /* 图片样式 */
+          .img-fluid {
+              max-width: 100%;
+              height: auto;
+              border-radius: 8px;
+          }
+          
+          /* 地图容器 */
+          #mapContainer {
+              width: 100%;
+              height: 400px;
+              border-radius: 8px;
+              overflow: hidden;
+              background-color: #f0f0f0;
+              margin-bottom: 20px;
+          }
+          
+          /* 天气卡片 */
+          .weather-card {
+              text-align: center;
+              padding: 15px;
+          }
+          .weather-icon {
+              font-size: 2.5rem;
+              margin-bottom: 10px;
+              color: #f39c12;
+          }
+          
+          /* 打车提示区域 */
+          #taxiInfo {
+              background-color: #e3f2fd;
+              border-left: 4px solid #2196f3;
+              padding: 15px;
+              margin-bottom: 20px;
+              border-radius: 0 8px 8px 0;
+              display: none;
+          }
+          
+          /* 页脚样式 */
+          footer {
+              background-color: #2c3e50;
+              color: white;
+              padding: 30px 0;
+              margin-top: 50px;
+          }
+          footer h4 {
+              color: white;
+              margin-bottom: 20px;
+          }
+          .social-links {
+              display: flex;
+              gap: 15px;
+          }
+          .social-links a {
+              color: white;
+              text-decoration: none;
+              font-size: 1.2rem;
+          }
+          .copyright {
+              margin-top: 20px;
+              padding-top: 20px;
+              border-top: 1px solid rgba(255,255,255,0.1);
+              text-align: center;
+              color: #bdc3c7;
+          }
+          
+          /* 标签样式 */
+          .tag {
+              display: inline-block;
+              background-color: #3498db;
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 0.85rem;
+              margin-right: 8px;
+              margin-bottom: 8px;
+          }
+          
+          /* 提示信息 */
+          .alert {
+              padding: 15px;
+              border-radius: 8px;
+              margin-bottom: 20px;
+          }
+          .alert-info {
+              background-color: #e3f2fd;
+              color: #1565c0;
+              border: 1px solid #bbdefb;
+          }
+          
+          /* 响应式导航栏 */
+          .navbar-toggler {
+              background-color: transparent;
+              border: none;
+              font-size: 1.5rem;
+              cursor: pointer;
+              padding: 5px;
+          }
+          
+          /* 间距 */
+          .mt-4 { margin-top: 1.5rem; }
+          .mb-4 { margin-bottom: 1.5rem; }
+          .p-4 { padding: 1.5rem; }
+          .mx-auto { margin-left: auto; margin-right: auto; }
+          
+          /* 列表样式 */
+          ul, ol {
+              padding-left: 20px;
+              margin-bottom: 15px;
+          }
+          li {
+              margin-bottom: 8px;
+          }
+          
+          /* 按钮组 */
+          .btn-group {
+              display: flex;
+              gap: 10px;
+              flex-wrap: wrap;
+          }
+          
+          /* 天气部分样式 */
+          .weather-forecast {
+              display: flex;
+              flex-wrap: nowrap;
+              overflow-x: auto;
+              gap: 15px;
+              padding: 10px 0;
+              margin-bottom: 20px;
+          }
+          .weather-day {
+              min-width: 120px;
+              background: white;
+              border-radius: 8px;
+              padding: 15px;
+              text-align: center;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          }
+          .weather-day h4 {
+              margin-bottom: 10px;
+              font-size: 1rem;
+              color: #333;
+          }
+          
+          /* 景点详情样式 */
+          .attraction-detail {
+              background: white;
+              border-radius: 8px;
+              padding: 20px;
+              margin-bottom: 20px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          }
+          .attraction-detail .image-container {
+              margin-bottom: 20px;
+          }
+          
+          /* 按钮特定样式 */
+          .btn-outline-primary {
+              background: transparent;
+              border: 2px solid #3498db;
+              color: #3498db;
+              transition: all 0.3s ease;
+          }
+          .btn-outline-primary:hover {
+              background: #3498db;
+              color: white;
+          }
+          
+          /* 地图控件容器 */
+          .map-controls {
+              margin-bottom: 20px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 15px;
+              align-items: center;
+          }
+          
+          /* 景点标签样式 */
+          .attraction-tags {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 8px;
+              margin-bottom: 15px;
+          }
+          .tag-primary { background-color: #3498db; }
+          .tag-secondary { background-color: #2ecc71; }
+          .tag-info { background-color: #17a2b8; }
+          .tag-warning { background-color: #ffc107; color: #212529; }
+          
+          /* 景点卡片的特殊样式 */
+          .attraction-card .card-footer {
+              padding: 15px 20px;
+              background-color: #f8f9fa;
+              border-top: 1px solid #e9ecef;
+          }
+          .attraction-card .price-info {
+              color: #e74c3c;
+              font-weight: bold;
+          }
+          .attraction-card .time-info {
+              color: #666;
+              font-size: 0.9rem;
+          }
+          
+          /* 行程规划样式 */
+          .day-itinerary {
+              margin-bottom: 40px;
+              padding-bottom: 20px;
+              border-bottom: 2px solid #e9ecef;
+          }
+          .day-itinerary:last-child {
+              border-bottom: none;
+          }
+          
+          /* 响应式调整 */
+          @media (max-width: 576px) {
+              h1 { font-size: 2rem; }
+              h2 { font-size: 1.5rem; }
+              h3 { font-size: 1.25rem; }
+              .card-img-top {
+                  height: 180px;
+              }
+              #mapContainer {
+                  height: 300px;
+              }
+              .navbar-nav {
+                  flex-direction: column;
+                  width: 100%;
+              }
+              .nav-link {
+                  margin: 5px 0;
+              }
+              .map-controls {
+                  flex-direction: column;
+                  align-items: stretch;
+              }
+          }
+          
+          /* 滚动条样式 */
+          ::-webkit-scrollbar {
+              width: 8px;
+              height: 8px;
+          }
+          ::-webkit-scrollbar-track {
+              background: #f1f1f1;
+              border-radius: 4px;
+          }
+          ::-webkit-scrollbar-thumb {
+              background: #c1c1c1;
+              border-radius: 4px;
+          }
+          ::-webkit-scrollbar-thumb:hover {
+              background: #a8a8a8;
+          }
+          
+          /* 动画效果 */
+          @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+          }
+          .fade-in {
+              animation: fadeIn 0.6s ease-out;
+          }
+          
+          /* 加载状态 */
+          .loading {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 200px;
+              color: #666;
+          }
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-text: #7f8c8d;
+            --background-color: #f8f9fa;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+        
+        /* 导航栏样式 */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            margin: 0 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* 英雄区域 */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* 行程概览卡片 */
+        .overview-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .overview-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .overview-card .day-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* 景区卡片 */
+        .scenic-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+        }
+        
+        .scenic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scenic-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .scenic-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .scenic-card .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scenic-card .card-text {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+        
+        .scenic-card .card-footer {
+            background-color: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .scenic-card .badge {
+            background-color: var(--secondary-color);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 地图样式 */
+        .map-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* 天气卡片 */
+        .weather-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .weather-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+        
+        .weather-card h4 {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        /* 交通提示卡片 */
+        .transport-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .transport-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .transport-card i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .scenic-card img {
+                height: 150px;
+            }
+            
+            #map {
+                height: 300px;
+            }
+        }
+        
+        /* 按钮样式 */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        /* 分割线样式 */
+        .section-divider {
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+        
+        /* 提示框样式 */
+        .tip-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tip-box i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-map-marked-alt"></i> 郑州旅行攻略
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">行程概览</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#day1">第一天</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#day2">第二天</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#day3">第三天</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#day4">第四天</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#map-section">地图</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>五一郑州4日游完美攻略</h1>
+                <p>精心规划的行程，带你领略郑州的历史文化与现代魅力</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 行程概览 -->
+    <section id="overview" class="container py-5">
+        <h2 class="text-center mb-5">行程概览</h2>
+        <div class="section-divider"></div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="overview-card">
+                    <div class="day-number">1</div>
+                    <h3>第一天：历史文化之旅</h3>
+                    <p>参观河南博物院、二七纪念塔，感受郑州的历史文化底蕴。</p>
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>提示：</strong>河南博物院需提前预约，建议早上开门即去，避开人流高峰。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="overview-card">
+                    <div class="day-number">2</div>
+                    <h3>第二天：嵩山少林寺</h3>
+                    <p>前往嵩山少林寺，观赏少林功夫表演，游览塔林。</p>
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>提示：</strong>距市区较远，建议早上出发，可选择跟团或包车前往。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="overview-card">
+                    <div class="day-number">3</div>
+                    <h3>第三天：黄河游览</h3>
+                    <p>参观黄河风景区、黄河博物馆，感受母亲河的磅礴气势。</p>
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>提示：</strong>景区较大，建议穿舒适的鞋子，带足饮用水。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="overview-card">
+                    <div class="day-number">4</div>
+                    <h3>第四天：现代郑州</h3>
+                    <p>游览郑州CBD、如意湖，在大卫城等购物中心自由活动。</p>
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>提示：</strong>可体验郑州地铁，方便快捷地游览各个商圈。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 天气信息 -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5">五一期间郑州天气预测</h2>
+        <div class="section-divider"></div>
+        
+        <div class="row" id="weather-container">
+            <div class="col-md-3">
+                <div class="weather-card">
+                    <div class="weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h4>5月1日</h4>
+                    <p><strong>22°C - 30°C</strong></p>
+                    <p>晴转多云</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="weather-card">
+                    <div class="weather-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h4>5月2日</h4>
+                    <p><strong>23°C - 31°C</strong></p>
+                    <p>多云</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="weather-card">
+                    <div class="weather-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>5月3日</h4>
+                    <p><strong>21°C - 29°C</strong></p>
+                    <p>阴</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="weather-card">
+                    <div class="weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h4>5月4日</h4>
+                    <p><strong>22°C - 30°C</strong></p>
+                    <p>晴</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第一天行程 -->
+    <section id="day1" class="container py-5">
+        <h2 class="text-center mb-5">第一天行程</h2>
+        <div class="section-divider"></div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/henanmuseum/600/400" alt="河南博物院">
+                    <div class="card-body">
+                        <h5 class="card-title">河南博物院</h5>
+                        <p class="card-text">河南省最大的综合性博物馆，收藏文物13万余件，是了解中原文化的重要窗口。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">必游景点</span>
+                        <span class="badge">历史文化</span>
+                        <span class="badge">免费参观</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/erqitower/600/400" alt="二七纪念塔">
+                    <div class="card-body">
+                        <h5 class="card-title">二七纪念塔</h5>
+                        <p class="card-text">郑州地标性建筑，为纪念京汉铁路工人大罢工而建，塔高63米，共14层。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">城市地标</span>
+                        <span class="badge">历史建筑</span>
+                        <span class="badge">免费参观</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transport-card mt-4">
+            <h4>交通安排</h4>
+            <p><i class="fas fa-taxi"></i> 河南博物院 → 二七纪念塔：打车约15分钟，费用约20元</p>
+            <p><i class="fas fa-subway"></i> 或乘坐地铁2号线转1号线，在二七广场站下车，步行可达</p>
+        </div>
+    </section>
+
+    <!-- 第二天行程 -->
+    <section id="day2" class="container py-5">
+        <h2 class="text-center mb-5">第二天行程</h2>
+        <div class="section-divider"></div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/shaolin/600/400" alt="少林寺">
+                    <div class="card-body">
+                        <h5 class="card-title">少林寺</h5>
+                        <p class="card-text">世界文化遗产，中国功夫的发源地，建于北魏太和十九年（公元495年）。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">世界遗产</span>
+                        <span class="badge">佛教圣地</span>
+                        <span class="badge">功夫表演</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/talin/600/400" alt="塔林">
+                    <div class="card-body">
+                        <h5 class="card-title">塔林</h5>
+                        <p class="card-text">少林寺历代高僧的墓地，保存了唐、宋、元、明、清各代的砖石墓塔240余座。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">历史遗迹</span>
+                        <span class="badge">古代建筑</span>
+                        <span class="badge">文化遗产</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transport-card mt-4">
+            <h4>交通安排</h4>
+            <p><i class="fas fa-taxi"></i> 郑州市区 → 少林寺：打车约1小时，费用约150-200元</p>
+            <p><i class="fas fa-bus"></i> 或在郑州汽车客运中心站乘坐前往登封的班车，到达后转乘出租车前往</p>
+            <p><i class="fas fa-info-circle"></i> 建议包车前往，方便灵活，可议价至300-400元/天</p>
+        </div>
+    </section>
+
+    <!-- 第三天行程 -->
+    <section id="day3" class="container py-5">
+        <h2 class="text-center mb-5">第三天行程</h2>
+        <div class="section-divider"></div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/huanghe/600/400" alt="黄河风景区">
+                    <div class="card-body">
+                        <h5 class="card-title">黄河风景区</h5>
+                        <p class="card-text">位于郑州市西北20公里处，是观赏黄河的最佳地点，有"黄河第一景"之称。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">自然景观</span>
+                        <span class="badge">母亲河</span>
+                        <span class="badge">拍照胜地</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/huanghemuseum/600/400" alt="黄河博物馆">
+                    <div class="card-body">
+                        <h5 class="card-title">黄河博物馆</h5>
+                        <p class="card-text">中国第一座江河博物馆，展示了黄河的地质、历史、文化和治理成就。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">科普教育</span>
+                        <span class="badge">历史文化</span>
+                        <span class="badge">免费参观</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transport-card mt-4">
+            <h4>交通安排</h4>
+            <p><i class="fas fa-taxi"></i> 郑州市区 → 黄河风景区：打车约40分钟，费用约60元</p>
+            <p><i class="fas fa-taxi"></i> 黄河风景区 → 黄河博物馆：打车约30分钟，费用约40元</p>
+            <p><i class="fas fa-bus"></i> 或在郑州市区乘坐16路公交车直达黄河风景区</p>
+        </div>
+    </section>
+
+    <!-- 第四天行程 -->
+    <section id="day4" class="container py-5">
+        <h2 class="text-center mb-5">第四天行程</h2>
+        <div class="section-divider"></div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/cbd/600/400" alt="郑州CBD">
+                    <div class="card-body">
+                        <h5 class="card-title">郑州CBD</h5>
+                        <p class="card-text">郑州中央商务区，拥有千玺广场"大玉米"等标志性建筑，展现现代郑州风貌。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">现代建筑</span>
+                        <span class="badge">城市地标</span>
+                        <span class="badge">商务中心</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="scenic-card">
+                    <img src="https://picsum.photos/seed/ruyihu/600/400" alt="如意湖">
+                    <div class="card-body">
+                        <h5 class="card-title">如意湖</h5>
+                        <p class="card-text">位于CBD中心区域，湖水清澈，周围环境优美，是休闲散步的好去处。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="badge">城市公园</span>
+                        <span class="badge">休闲娱乐</span>
+                        <span class="badge">免费游览</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transport-card mt-4">
+            <h4>交通安排</h4>
+            <p><i class="fas fa-taxi"></i> 郑州市区 → CBD：打车约20分钟，费用约30元</p>
+            <p><i class="fas fa-subway"></i> 或乘坐地铁1号线在会展中心站下车，步行可达</p>
+            <p><i class="fas fa-shopping-bag"></i> 周边有大卫城、正弘城等购物中心，可自由安排购物时间</p>
+        </div>
+    </section>
+
+    <!-- 地图部分 -->
+    <section id="map-section" class="container py-5">
+        <h2 class="text-center mb-5">旅行地图</h2>
+        <div class="section-divider"></div>
+        
+        <div class="map-container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <select id="daySelect" class="form-select">
+                        <option value="day1">第一天：历史文化之旅</option>
+                        <option value="day2">第二天：嵩山少林寺</option>
+                        <option value="day3">第三天：黄河游览</option>
+                        <option value="day4">第四天：现代郑州</option>
+                    </select>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button id="openAmapBtn" class="btn btn-primary me-2">
+                        <i class="fas fa-map-marked-alt"></i> 在高德地图APP中打开行程
+                    </button>
+                    <button id="showTaxiBtn" class="btn btn-success">
+                        <i class="fas fa-taxi"></i> 显示打车信息
+                    </button>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div id="taxiInfo" class="mt-4 p-3 bg-light rounded" style="display: none;">
+                <h5><i class="fas fa-info-circle"></i> 打车提示</h5>
+                <p>同一天行程景区之间建议使用打车服务，预计费用已在各天行程中列出。</p>
+                <p>可使用高德地图、滴滴出行等APP叫车，高峰期可能需要排队等待。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2023 郑州旅行攻略 | 五一出行必备</p>
+                <p class="mt-2">本攻略仅供参考，出行前请关注当地最新政策和天气情况</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入高德地图API -->
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=您的高德地图API密钥"></script>
+    
+    <!-- JavaScript -->
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // 景区坐标数据
+            const scenicSpots = {
+                // 第一天
+                'henanmuseum': { name: '河南博物院', position: [113.6654, 34.7817], day: 'day1' },
+                'erqitower': { name: '二七纪念塔', position: [113.6629, 34.7567], day: 'day1' },
+                // 第二天
+                'shaolin': { name: '少林寺', position: [112.9602, 34.5897], day: 'day2' },
+                'talin': { name: '塔林', position: [112.9584, 34.5874], day: 'day2' },
+                // 第三天
+                'huanghe': { name: '黄河风景区', position: [113.4768, 34.8604], day: 'day3' },
+                'huanghemuseum': { name: '黄河博物馆', position: [113.6336, 34.7864], day: 'day3' },
+                // 第四天
+                'cbd': { name: '郑州CBD', position: [113.7955, 34.7571], day: 'day4' },
+                'ruyihu': { name: '如意湖', position: [113.7984, 34.7559], day: 'day4' }
+            };
+
+            // 初始化地图
+            let map = null;
+            let markers = [];
+            let polyline = null;
+            
+            function initMap() {
+                // 创建地图实例
+                map = new AMap.Map('map', {
+                    zoom: 12,
+                    center: [113.6623, 34.7466], // 郑州市中心坐标
+                    viewMode: '3D',
+                    resizeEnable: true
+                });
+                
+                // 尝试添加控件，如果可用的话
+                try {
+                    // 简化版控件添加，避免构造函数错误
+                    if (AMap.plugin) {
+                        AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.MapType'], function() {
+                            try {
+                                map.addControl(new AMap.ToolBar());
+                                map.addControl(new AMap.Scale());
+                                map.addControl(new AMap.MapType());
+                            } catch (e) {
+                                console.log('部分地图控件无法加载，但不影响基本功能');
+                            }
+                        });
+                    }
+                } catch (e) {
+                    console.log('地图控件加载失败，但不影响基本功能');
+                }
+                
+                // 默认显示第一天行程
+                showDayItinerary('day1');
+            }
+            
+            // 显示指定天的行程
+            function showDayItinerary(day) {
+                // 清除之前的标记和路线
+                clearMarkers();
+                clearPolyline();
+                
+                // 获取当天的景点
+                const daySpots = Object.values(scenicSpots).filter(spot => spot.day === day);
+                
+                if (daySpots.length > 0) {
+                    // 添加标记
+                    daySpots.forEach((spot, index) => {
+                        const marker = new AMap.Marker({
+                            position: spot.position,
+                            title: spot.name,
+                            map: map,
+                            label: {
+                                content: (index + 1).toString(),
+                                offset: new AMap.Pixel(-5, -5),
+                                fontSize: '12px',
+                                fontWeight: 'bold'
+                            }
+                        });
+                        
+                        // 添加信息窗口
+                        const infoWindow = new AMap.InfoWindow({
+                            content: `<h3>${spot.name}</h3><p>第${getDayNumber(day)}天行程</p>`,
+                            offset: new AMap.Pixel(0, -30)
+                        });
+                        
+                        marker.on('click', function() {
+                            infoWindow.open(map, marker.getPosition());
+                        });
+                        
+                        markers.push(marker);
+                    });
+                    
+                    // 绘制路线
+                    if (daySpots.length >= 2) {
+                        const path = daySpots.map(spot => spot.position);
+                        polyline = new AMap.Polyline({
+                            path: path,
+                            strokeColor: '#3498db',
+                            strokeWeight: 4,
+                            strokeStyle: 'solid',
+                            map: map
+                        });
+                    }
+                    
+                    // 调整地图视野
+                    map.setFitView(markers);
+                }
+            }
+            
+            // 清除标记
+            function clearMarkers() {
+                markers.forEach(marker => marker.setMap(null));
+                markers = [];
+            }
+            
+            // 清除路线
+            function clearPolyline() {
+                if (polyline) {
+                    polyline.setMap(null);
+                    polyline = null;
+                }
+            }
+            
+            // 获取天数数字
+            function getDayNumber(day) {
+                return day.replace('day', '');
+            }
+            
+            // 打开高德地图APP
+            function openAmapApp() {
+                const selectedDay = document.getElementById('daySelect').value;
+                const dayNumber = getDayNumber(selectedDay);
+                const daySpots = Object.values(scenicSpots).filter(spot => spot.day === selectedDay);
+                
+                if (daySpots.length > 0) {
+                    // 生成高德地图APP的URI Scheme
+                    // 这里使用简化的URI，实际应用中可以根据高德地图API文档生成更复杂的路线规划
+                    const startPoint = daySpots[0];
+                    const endPoint = daySpots[daySpots.length - 1];
+                    
+                    // 构建URI
+                    let uri = `amapuri://route/plan/?sourceApplication=郑州旅行攻略`;
+                    uri += `&dlat=${endPoint.position[1]}&dlon=${endPoint.position[0]}&dname=${encodeURIComponent(endPoint.name)}`;
+                    
+                    // 尝试打开APP
+                    window.location.href = uri;
+                    
+                    // 提示信息
+                    setTimeout(() => {
+                        alert('如果没有自动打开高德地图APP，请手动打开并搜索相关景点');
+                    }, 2000);
+                }
+            }
+            
+            // 显示/隐藏打车信息
+            document.getElementById('showTaxiBtn').addEventListener('click', function() {
+                const taxiInfo = document.getElementById('taxiInfo');
+                if (taxiInfo.style.display === 'none' || taxiInfo.style.display === '') {
+                    taxiInfo.style.display = 'block';
+                    this.innerHTML = '<i class="fas fa-times"></i> 隐藏打车信息';
+                } else {
+                    taxiInfo.style.display = 'none';
+                    this.innerHTML = '<i class="fas fa-taxi"></i> 显示打车信息';
+                }
+            });
+            
+            // 天数选择事件
+            document.getElementById('daySelect').addEventListener('change', function() {
+                showDayItinerary(this.value);
+            });
+            
+            // 高德地图打开按钮事件
+            document.getElementById('openAmapBtn').addEventListener('click', openAmapApp);
+            
+            // 获取天气信息
+            function fetchWeatherInfo() {
+                // 模拟天气数据获取
+                console.log('获取郑州五一期间天气信息');
+                // 实际项目中可以调用天气API获取实时天气
+            }
+            
+            // 检查是否能加载高德地图API
+            if (typeof AMap !== 'undefined') {
+                initMap();
+            } else {
+                // 降级处理：使用静态地图
+                const mapElement = document.getElementById('map');
+                mapElement.innerHTML = '<div style="width:100%;height:100%;background-color:#f0f0f0;display:flex;align-items:center;justify-content:center;">' +
+                    '<div style="text-align:center;">' +
+                    '<i class="fas fa-map-marked-alt" style="font-size:4rem;color:#3498db;margin-bottom:1rem;"></i>' +
+                    '<p style="font-size:1.2rem;color:#7f8c8d;">地图加载中...</p>' +
+                    '<p style="font-size:0.9rem;color:#e74c3c;margin-top:1rem;">请在实际使用时替换为您的高德地图API密钥</p>' +
+                    '</div>' +
+                    '</div>';
+            }
+            
+            fetchWeatherInfo();
+        });
+    </script>
+</body>
+</html>
