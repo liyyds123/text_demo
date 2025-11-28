@@ -445,13 +445,111 @@
           }
           
           /* 动画效果 */
-          @keyframes fadeIn {
-              from { opacity: 0; transform: translateY(20px); }
-              to { opacity: 1; transform: translateY(0); }
-          }
-          .fade-in {
-              animation: fadeIn 0.6s ease-out;
-          }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* 滚动动画 */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.6s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.6s ease-out;
+        }
+        
+        /* 悬停动画 */
+        .overview-card:hover,
+        .scenic-card:hover,
+        .weather-card:hover {
+            animation: pulse 0.3s ease-in-out;
+        }
+        
+        /* 按钮动画 */
+        .btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 卡片过渡效果 */
+        .overview-card,
+        .scenic-card,
+        .weather-card,
+        .transport-card {
+            transition: all 0.3s ease;
+        }
+        
+        /* 导航栏滚动效果 */
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+        }
+        
+        /* 地图标记动画 */
+        @keyframes markerBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .map-marker {
+            animation: markerBounce 2s infinite;
+        }
           
           /* 加载状态 */
           .loading {
@@ -629,29 +727,85 @@
         
         /* 天气卡片 */
         .weather-card {
-            background-color: white;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
             box-shadow: var(--card-shadow);
             padding: 1.5rem;
             text-align: center;
             margin-bottom: 1.5rem;
             transition: var(--transition);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weather-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        
+        .weather-card:hover::before {
+            transform: rotate(45deg) translate(100%, 100%);
         }
         
         .weather-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .weather-icon {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
-            color: #f39c12;
+            color: #fff;
+            position: relative;
+            z-index: 1;
         }
         
         .weather-card h4 {
             margin-bottom: 0.5rem;
             font-weight: 600;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .weather-card p {
+            margin: 0.5rem 0;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .weather-card p strong {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+        
+        .weather-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .weather-detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .weather-detail-item i {
+            margin-bottom: 0.3rem;
         }
         
         /* 交通提示卡片 */
@@ -687,6 +841,16 @@
         }
         
         /* 响应式设计 */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .map-container {
+                padding: 0.5rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2rem;
@@ -701,7 +865,96 @@
             }
             
             #map {
+                height: 350px;
+            }
+            
+            /* 导航栏响应式优化 */
+            .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .navbar-nav .nav-item {
+                margin: 5px 0;
+            }
+            
+            /* 地图控件容器响应式 */
+            .map-container .row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .map-container .col-md-4 {
+                width: 100%;
+            }
+            
+            .map-container .text-md-end {
+                text-align: left !important;
+            }
+            
+            /* 按钮组响应式 */
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            /* 天气卡片响应式 */
+            #weather-container .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* 行程概览卡片响应式 */
+            .overview-card {
+                padding: 1rem;
+            }
+            
+            /* 交通卡片响应式 */
+            .transport-card {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            #map {
                 height: 300px;
+            }
+            
+            /* 天气卡片在小屏设备上全屏显示 */
+            #weather-container .col-md-3 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* 地图按钮在小屏设备上垂直排列 */
+            .map-container .btn {
+                width: 100%;
+                margin: 5px 0 !important;
+            }
+            
+            /* 卡片间距调整 */
+            .overview-card,
+            .scenic-card,
+            .weather-card,
+            .transport-card {
+                margin-bottom: 1rem;
+            }
+            
+            /* 页脚优化 */
+            footer {
+                padding: 1.5rem 0;
             }
         }
         
@@ -1083,7 +1336,7 @@
         
         <div class="map-container">
             <div class="row mb-4">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <select id="daySelect" class="form-select">
                         <option value="day1">第一天：历史文化之旅</option>
                         <option value="day2">第二天：嵩山少林寺</option>
@@ -1091,7 +1344,15 @@
                         <option value="day4">第四天：现代郑州</option>
                     </select>
                 </div>
-                <div class="col-md-6 text-md-end">
+                <div class="col-md-4">
+                    <select id="routeTypeSelect" class="form-select">
+                        <option value="drive">驾车</option>
+                        <option value="bus">公交</option>
+                        <option value="walk">步行</option>
+                        <option value="bike">骑行</option>
+                    </select>
+                </div>
+                <div class="col-md-4 text-md-end">
                     <button id="openAmapBtn" class="btn btn-primary me-2">
                         <i class="fas fa-map-marked-alt"></i> 在高德地图APP中打开行程
                     </button>
@@ -1101,6 +1362,10 @@
                 </div>
             </div>
             <div id="map"></div>
+            <div id="routeInfo" class="mt-4 p-3 bg-light rounded" style="display: none;">
+                <h5><i class="fas fa-route"></i> 路线规划信息</h5>
+                <div id="routeDetails"></div>
+            </div>
             <div id="taxiInfo" class="mt-4 p-3 bg-light rounded" style="display: none;">
                 <h5><i class="fas fa-info-circle"></i> 打车提示</h5>
                 <p>同一天行程景区之间建议使用打车服务，预计费用已在各天行程中列出。</p>
@@ -1120,7 +1385,7 @@
     </footer>
 
     <!-- 引入高德地图API -->
-    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=您的高德地图API密钥"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=1234567890abcdef1234567890abcdef"></script>
     
     <!-- JavaScript -->
     <script>
@@ -1135,27 +1400,122 @@
                     });
                 });
             });
+            
+            // 导航栏滚动效果
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有需要动画的元素
+            document.querySelectorAll('.overview-card, .scenic-card, .weather-card, .transport-card').forEach(el => {
+                observer.observe(el);
+            });
 
             // 景区坐标数据
             const scenicSpots = {
                 // 第一天
-                'henanmuseum': { name: '河南博物院', position: [113.6654, 34.7817], day: 'day1' },
-                'erqitower': { name: '二七纪念塔', position: [113.6629, 34.7567], day: 'day1' },
+                'henanmuseum': { 
+                    name: '河南博物院', 
+                    position: [113.6654, 34.7817], 
+                    day: 'day1',
+                    openingHours: '09:00-17:00（16:00停止入场，周一闭馆）',
+                    ticketPrice: '免费（需提前预约）',
+                    transportation: '地铁2号线关虎屯站下车，步行约10分钟',
+                    description: '河南省最大的综合性博物馆，收藏文物13万余件，是了解中原文化的重要窗口。'
+                },
+                'erqitower': { 
+                    name: '二七纪念塔', 
+                    position: [113.6629, 34.7567], 
+                    day: 'day1',
+                    openingHours: '08:30-18:00',
+                    ticketPrice: '免费',
+                    transportation: '地铁1号线/2号线二七广场站下车，步行可达',
+                    description: '郑州地标性建筑，为纪念京汉铁路工人大罢工而建，塔高63米，共14层。'
+                },
                 // 第二天
-                'shaolin': { name: '少林寺', position: [112.9602, 34.5897], day: 'day2' },
-                'talin': { name: '塔林', position: [112.9584, 34.5874], day: 'day2' },
+                'shaolin': { 
+                    name: '少林寺', 
+                    position: [112.9602, 34.5897], 
+                    day: 'day2',
+                    openingHours: '07:30-18:00',
+                    ticketPrice: '80元/人',
+                    transportation: '从郑州汽车客运中心站乘坐前往登封的班车，到达后转乘出租车前往',
+                    description: '世界文化遗产，中国功夫的发源地，建于北魏太和十九年（公元495年）。'
+                },
+                'talin': { 
+                    name: '塔林', 
+                    position: [112.9584, 34.5874], 
+                    day: 'day2',
+                    openingHours: '07:30-18:00',
+                    ticketPrice: '包含在少林寺门票内',
+                    transportation: '位于少林寺景区内，步行可达',
+                    description: '少林寺历代高僧的墓地，保存了唐、宋、元、明、清各代的砖石墓塔240余座。'
+                },
                 // 第三天
-                'huanghe': { name: '黄河风景区', position: [113.4768, 34.8604], day: 'day3' },
-                'huanghemuseum': { name: '黄河博物馆', position: [113.6336, 34.7864], day: 'day3' },
+                'huanghe': { 
+                    name: '黄河风景区', 
+                    position: [113.4768, 34.8604], 
+                    day: 'day3',
+                    openingHours: '06:30-18:30',
+                    ticketPrice: '60元/人',
+                    transportation: '郑州市区乘坐16路公交车直达',
+                    description: '位于郑州市西北20公里处，是观赏黄河的最佳地点，有"黄河第一景"之称。'
+                },
+                'huanghemuseum': { 
+                    name: '黄河博物馆', 
+                    position: [113.6336, 34.7864], 
+                    day: 'day3',
+                    openingHours: '09:00-17:00（周一闭馆）',
+                    ticketPrice: '免费',
+                    transportation: '地铁1号线燕庄站下车，步行约15分钟',
+                    description: '中国第一座江河博物馆，展示了黄河的地质、历史、文化和治理成就。'
+                },
                 // 第四天
-                'cbd': { name: '郑州CBD', position: [113.7955, 34.7571], day: 'day4' },
-                'ruyihu': { name: '如意湖', position: [113.7984, 34.7559], day: 'day4' }
+                'cbd': { 
+                    name: '郑州CBD', 
+                    position: [113.7955, 34.7571], 
+                    day: 'day4',
+                    openingHours: '全天开放',
+                    ticketPrice: '免费',
+                    transportation: '地铁1号线会展中心站下车，步行可达',
+                    description: '郑州中央商务区，拥有千玺广场"大玉米"等标志性建筑，展现现代郑州风貌。'
+                },
+                'ruyihu': { 
+                    name: '如意湖', 
+                    position: [113.7984, 34.7559], 
+                    day: 'day4',
+                    openingHours: '全天开放',
+                    ticketPrice: '免费',
+                    transportation: '位于CBD中心区域，步行可达',
+                    description: '位于CBD中心区域，湖水清澈，周围环境优美，是休闲散步的好去处。'
+                }
             };
 
             // 初始化地图
             let map = null;
             let markers = [];
             let polyline = null;
+            let routePlanner = null;
+            let currentRouteType = 'drive';
             
             function initMap() {
                 // 创建地图实例
@@ -1163,25 +1523,63 @@
                     zoom: 12,
                     center: [113.6623, 34.7466], // 郑州市中心坐标
                     viewMode: '3D',
-                    resizeEnable: true
+                    resizeEnable: true,
+                    zoomEnable: true,
+                    dragEnable: true,
+                    rotateEnable: true,
+                    pitchEnable: true
                 });
                 
-                // 尝试添加控件，如果可用的话
-                try {
-                    // 简化版控件添加，避免构造函数错误
-                    if (AMap.plugin) {
-                        AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.MapType'], function() {
-                            try {
-                                map.addControl(new AMap.ToolBar());
-                                map.addControl(new AMap.Scale());
-                                map.addControl(new AMap.MapType());
-                            } catch (e) {
-                                console.log('部分地图控件无法加载，但不影响基本功能');
-                            }
-                        });
-                    }
-                } catch (e) {
-                    console.log('地图控件加载失败，但不影响基本功能');
+                // 添加丰富的地图控件
+                if (AMap.plugin) {
+                    AMap.plugin([
+                        'AMap.ToolBar', 
+                        'AMap.Scale', 
+                        'AMap.MapType',
+                        'AMap.Geolocation',
+                        'AMap.Traffic',
+                        'AMap.ControlBar'
+                    ], function() {
+                        // 工具栏控件
+                        map.addControl(new AMap.ToolBar({
+                            position: 'RB',
+                            offset: new AMap.Pixel(10, 10)
+                        }));
+                        
+                        // 比例尺控件
+                        map.addControl(new AMap.Scale({
+                            position: 'LB'
+                        }));
+                        
+                        // 地图类型切换控件
+                        map.addControl(new AMap.MapType({
+                            showTraffic: false,
+                            showRoad: true,
+                            defaultType: 0
+                        }));
+                        
+                        // 定位控件
+                        map.addControl(new AMap.Geolocation({
+                            enableHighAccuracy: true,
+                            timeout: 10000,
+                            buttonPosition: 'RB',
+                            buttonOffset: new AMap.Pixel(10, 50),
+                            zoomToAccuracy: true
+                        }));
+                        
+                        // 路况控件
+                        map.addControl(new AMap.Traffic({
+                            show: false,
+                            autoRefresh: true,
+                            interval: 180
+                        }));
+                        
+                        // 控制栏控件
+                        map.addControl(new AMap.ControlBar({
+                            position: 'RB',
+                            offset: new AMap.Pixel(10, 100)
+                        }));
+                    });
                 }
                 
                 // 默认显示第一天行程
@@ -1200,22 +1598,74 @@
                 if (daySpots.length > 0) {
                     // 添加标记
                     daySpots.forEach((spot, index) => {
+                        // 自定义标记样式
                         const marker = new AMap.Marker({
                             position: spot.position,
                             title: spot.name,
                             map: map,
+                            icon: new AMap.Icon({
+                                size: new AMap.Size(32, 32),
+                                image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b' + (index + 1) + '.png',
+                                imageSize: new AMap.Size(32, 32)
+                            }),
                             label: {
                                 content: (index + 1).toString(),
-                                offset: new AMap.Pixel(-5, -5),
-                                fontSize: '12px',
-                                fontWeight: 'bold'
+                                offset: new AMap.Pixel(15, -15),
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                backgroundColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 2,
+                                borderRadius: 12,
+                                padding: '2px 6px'
                             }
                         });
                         
-                        // 添加信息窗口
+                        // 更美观的信息窗口，包含详细景点信息
                         const infoWindow = new AMap.InfoWindow({
-                            content: `<h3>${spot.name}</h3><p>第${getDayNumber(day)}天行程</p>`,
-                            offset: new AMap.Pixel(0, -30)
+                            content: `
+                                <div style="padding: 15px; min-width: 280px;">
+                                    <h3 style="margin: 0 0 10px 0; color: #3498db; font-size: 18px;">${spot.name}</h3>
+                                    <div style="margin-bottom: 15px;">
+                                        <span style="background-color: #e3f2fd; color: #1565c0; padding: 3px 8px; border-radius: 12px; font-size: 12px; margin-right: 5px;">
+                                            第${getDayNumber(day)}天行程
+                                        </span>
+                                        <span style="background-color: #fff3cd; color: #856404; padding: 3px 8px; border-radius: 12px; font-size: 12px;">
+                                            景点${index + 1}
+                                        </span>
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 10px;">
+                                        <p style="margin: 5px 0; color: #666; font-size: 14px;">
+                                            <strong style="color: #333;">开放时间：</strong>${spot.openingHours}
+                                        </p>
+                                        <p style="margin: 5px 0; color: #666; font-size: 14px;">
+                                            <strong style="color: #333;">门票价格：</strong>${spot.ticketPrice}
+                                        </p>
+                                        <p style="margin: 5px 0; color: #666; font-size: 14px;">
+                                            <strong style="color: #333;">交通指南：</strong>${spot.transportation}
+                                        </p>
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 15px; padding: 10px; background-color: #f8f9fa; border-radius: 6px;">
+                                        <p style="margin: 0; color: #555; font-size: 13px; line-height: 1.5;">
+                                            ${spot.description}
+                                        </p>
+                                    </div>
+                                    
+                                    <div style="display: flex; gap: 8px;">
+                                        <button style="background-color: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; flex: 1;">
+                                            查看详情
+                                        </button>
+                                        <button style="background-color: #2ecc71; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; flex: 1;">
+                                            导航前往
+                                        </button>
+                                    </div>
+                                </div>
+                            `,
+                            offset: new AMap.Pixel(0, -40),
+                            size: new AMap.Size(350, 0),
+                            closeWhenClickMap: true
                         });
                         
                         marker.on('click', function() {
@@ -1225,21 +1675,79 @@
                         markers.push(marker);
                     });
                     
-                    // 绘制路线
+                    // 计算并显示路线
                     if (daySpots.length >= 2) {
-                        const path = daySpots.map(spot => spot.position);
-                        polyline = new AMap.Polyline({
-                            path: path,
-                            strokeColor: '#3498db',
-                            strokeWeight: 4,
-                            strokeStyle: 'solid',
-                            map: map
-                        });
+                        calculateRoute(daySpots, currentRouteType);
                     }
                     
                     // 调整地图视野
-                    map.setFitView(markers);
+                    map.setFitView(markers, 50);
                 }
+            }
+            
+            // 计算路线
+            function calculateRoute(spots, routeType) {
+                if (!AMap.plugin) return;
+                
+                // 根据路线类型选择不同的路线规划服务
+                const serviceType = {
+                    drive: 'AMap.Driving',
+                    bus: 'AMap.Transfer',
+                    walk: 'AMap.Walking',
+                    bike: 'AMap.Riding'
+                };
+                
+                AMap.plugin([serviceType[routeType]], function() {
+                    let planner;
+                    
+                    // 创建路线规划实例
+                    switch(routeType) {
+                        case 'drive':
+                            planner = new AMap.Driving({
+                                map: map,
+                                panel: 'routeDetails',
+                                hideMarkers: false,
+                                showTraffic: true
+                            });
+                            break;
+                        case 'bus':
+                            planner = new AMap.Transfer({
+                                map: map,
+                                panel: 'routeDetails',
+                                policy: AMap.TransferPolicy.LEAST_TIME,
+                                city: '郑州市'
+                            });
+                            break;
+                        case 'walk':
+                            planner = new AMap.Walking({
+                                map: map,
+                                panel: 'routeDetails'
+                            });
+                            break;
+                        case 'bike':
+                            planner = new AMap.Riding({
+                                map: map,
+                                panel: 'routeDetails'
+                            });
+                            break;
+                    }
+                    
+                    // 执行路线规划
+                    const start = spots[0].position;
+                    const end = spots[spots.length - 1].position;
+                    
+                    planner.search(start, end, function(status, result) {
+                        if (status === 'complete') {
+                            document.getElementById('routeInfo').style.display = 'block';
+                            console.log('路线规划成功：', result);
+                        } else {
+                            console.log('路线规划失败：', result);
+                            document.getElementById('routeInfo').style.display = 'none';
+                        }
+                    });
+                    
+                    routePlanner = planner;
+                });
             }
             
             // 清除标记
@@ -1302,6 +1810,13 @@
             // 天数选择事件
             document.getElementById('daySelect').addEventListener('change', function() {
                 showDayItinerary(this.value);
+            });
+            
+            // 路线类型选择事件
+            document.getElementById('routeTypeSelect').addEventListener('change', function() {
+                currentRouteType = this.value;
+                const currentDay = document.getElementById('daySelect').value;
+                showDayItinerary(currentDay);
             });
             
             // 高德地图打开按钮事件
