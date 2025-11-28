@@ -1,0 +1,272 @@
+/* 全局样式 */
+page {
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  background-color: #f5f5f5;
+  padding: 20rpx;
+  line-height: 1.6;
+}
+
+/* 容器样式 */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 20rpx;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+  padding: 30rpx;
+}
+
+/* 标题样式 */
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 输入区域样式 */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 控制面板样式 */
+.control-panel {
+  background-color: #f9f9f9;
+  border-radius: 16rpx;
+  padding: 20rpx;
+}
+
+/* 表单组样式 */
+.form-group {
+  margin-bottom: 20rpx;
+}
+
+/* 标签样式 */
+.label {
+  display: block;
+  margin-bottom: 16rpx;
+  font-weight: bold;
+  color: #555;
+  font-size: 28rpx;
+}
+
+/* 按钮样式 */
+button {
+  padding: 24rpx 48rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+  border-radius: 12rpx;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+/* 选择图片按钮 */
+.select-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.select-btn:hover {
+  background-color: #5a6268;
+}
+
+/* 文件名显示 */
+.file-name {
+  margin-left: 20rpx;
+  color: #666;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+/* 文本域样式 */
+.caption-text {
+  width: 100%;
+  padding: 20rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  min-height: 200rpx;
+  resize: vertical;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* 按钮组样式 */
+.buttons {
+  display: flex;
+  gap: 15rpx;
+  margin-top: 30rpx;
+  flex-wrap: wrap;
+}
+
+.buttons button {
+  flex: 1;
+  min-width: 200rpx;
+}
+
+/* 生成按钮 */
+.generate-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.generate-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2rpx);
+}
+
+/* AI按钮 */
+.ai-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.ai-btn:hover {
+  background-color: #f57c00;
+  transform: translateY(-2rpx);
+}
+
+/* 保存按钮 */
+.save-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #0b7dda;
+  transform: translateY(-2rpx);
+}
+
+.save-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 预览区域样式 */
+.preview-section {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.preview-container {
+  border: 4rpx dashed #ddd;
+  border-radius: 16rpx;
+  min-height: 400rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 600rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.preview-placeholder {
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 简化设置样式 */
+.simple-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.setting-item {
+  margin-bottom: 20rpx;
+}
+
+/* 选择器样式 */
+.picker {
+  background-color: white;
+  border: 2rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  font-size: 28rpx;
+}
+
+/* 折叠面板样式 */
+.collapse-panel {
+  margin-top: 20rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.collapse-header {
+  background-color: #f0f0f0;
+  padding: 24rpx 32rpx;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #555;
+  font-size: 28rpx;
+}
+
+.collapse-header:hover {
+  background-color: #e0e0e0;
+}
+
+.collapse-content {
+  padding: 32rpx;
+  background-color: white;
+  display: none;
+}
+
+.collapse-content.active {
+  display: block;
+}
+
+.collapse-icon {
+  transition: transform 0.3s ease;
+  font-size: 24rpx;
+}
+
+.collapse-icon.active {
+  transform: rotate(180deg);
+}
+
+/* 高级设置提示 */
+.advanced-tip {
+  color: #666;
+  font-size: 26rpx;
+  text-align: center;
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .input-section {
+    flex-direction: column;
+  }
+  
+  .simple-settings {
+    grid-template-columns: 1fr;
+  }
+  
+  .buttons {
+    flex-direction: column;
+  }
+  
+  .buttons button {
+    width: 100%;
+  }
+}

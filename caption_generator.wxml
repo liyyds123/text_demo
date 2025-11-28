@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="title">图片字幕生成器</view>
+  
+  <view class="input-section">
+    <view class="control-panel">
+      <view class="form-group">
+        <view class="label">选择文件</view>
+        <button type="button" bindtap="chooseImage" class="select-btn">选择图片</button>
+        <view class="file-name">{{fileName || '未选择文件'}}</view>
+      </view>
+      
+      <view class="form-group">
+        <view class="label">字幕文本</view>
+        <textarea placeholder="请输入要显示的字幕内容..." value="{{captionText}}" bindinput="onCaptionTextChange" class="caption-text"></textarea>
+      </view>
+      
+      <view class="buttons">
+        <button type="button" bindtap="generateImage" class="generate-btn">生成字幕图片</button>
+        <button type="button" bindtap="aiGenerateCaption" class="ai-btn">AI生成搞笑字幕</button>
+        <button type="button" bindtap="saveImage" class="save-btn" disabled="{{!canSave}}">保存图片</button>
+      </view>
+      
+      <!-- 简化的参数设置 -->
+      <view class="form-group">
+        <view class="label">快速设置</view>
+        <view class="simple-settings">
+          <view class="setting-item">
+            <view class="label">选择模板</view>
+            <picker value="{{templateIndex}}" range="{{templateList}}" bindchange="onTemplateChange">
+              <view class="picker">{{templateList[templateIndex]}}</view>
+            </picker>
+          </view>
+          <view class="setting-item">
+            <view class="label">图片滤镜</view>
+            <picker value="{{filterIndex}}" range="{{filterList}}" bindchange="onFilterChange">
+              <view class="picker">{{filterList[filterIndex]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 折叠面板：高级设置 -->
+      <view class="collapse-panel">
+        <view class="collapse-header" bindtap="toggleCollapse">
+          <view class="header-text">高级设置</view>
+          <view class="collapse-icon {{isCollapsed ? 'active' : ''}}">▼</view>
+        </view>
+        <view class="collapse-content {{isCollapsed ? 'active' : ''}}">
+          <!-- 高级设置内容将在小程序版本中简化 -->
+          <view class="advanced-tip">高级设置功能在小程序版本中已简化</view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="preview-section">
+      <view class="label">预览效果</view>
+      <view class="preview-container">
+        <image wx:if="{{previewImage}}" src="{{previewImage}}" mode="aspectFit" class="preview-image"></image>
+        <view wx:else class="preview-placeholder">请选择图片并生成字幕</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<canvas canvas-id="canvas" style="display: none;"></canvas>

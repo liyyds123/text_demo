@@ -134,6 +134,16 @@
             transform: translateY(-2px);
         }
         
+        #aiGenerateBtn {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        #aiGenerateBtn:hover {
+            background-color: #f57c00;
+            transform: translateY(-2px);
+        }
+        
         .preview-section {
             margin-top: 30px;
             text-align: center;
@@ -183,11 +193,63 @@
         .watermark-options input[type="checkbox"] {
             cursor: pointer;
         }
+        
+        /* 折叠面板样式 */
+        .collapse-panel {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .collapse-header {
+            background-color: #f0f0f0;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .collapse-header:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .collapse-content {
+            padding: 16px;
+            background-color: white;
+            display: none;
+        }
+        
+        .collapse-content.active {
+            display: block;
+        }
+        
+        .collapse-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .collapse-icon.active {
+            transform: rotate(180deg);
+        }
+        
+        /* 简化的参数设置样式 */
+        .simple-settings {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .advanced-settings {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>图图片字幕生成器</h1>
+        <h1>图片字幕生成器</h1>
         
         <div class="input-section">
             <div class="control-panel">
@@ -196,34 +258,6 @@
                     <input type="file" id="imageUpload" accept="image/*" style="display: none;">
                     <button type="button" id="selectFileBtn" style="background-color: #6c757d; color: white;">选择图片</button>
                     <span id="fileName" style="margin-left: 10px; color: #666;">未选择文件</span>
-                </div>
-                
-                <div class="form-group">
-                    <label>参数设置</label>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div>
-                            <label for="charHeight">字符高度(px)</label>
-                            <input type="number" id="charHeight" value="40" min="10" max="100">
-                        </div>
-                        <div>
-                            <label for="fontSize">字体大小(px)</label>
-                            <input type="number" id="fontSize" value="20" min="5" max="50">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>颜色设置</label>
-                    <div class="color-pickers">
-                        <div class="color-picker-group">
-                            <label for="fontColor">字体颜色</label>
-                            <input type="color" id="fontColor" value="#33ccff">
-                        </div>
-                        <div class="color-picker-group">
-                            <label for="strokeColor">轮廓颜色</label>
-                            <input type="color" id="strokeColor" value="#000000">
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -236,19 +270,202 @@
                 
                 <div class="buttons">
                     <button id="generateBtn">生成字幕图片</button>
+                    <button id="aiGenerateBtn">AI生成搞笑字幕</button>
                     <button id="saveBtn" disabled>保存图片</button>
                 </div>
                 
-                <div class="watermark-options">
-                    <label><input type="checkbox" id="showRightTopWatermark" checked> 显示右上角水印</label>
-                    <label><input type="checkbox" id="showRightBottomWatermark" checked> 显示右下角水印</label>
-                    <div style="margin-top: 10px;">
-                        <label for="rightTopWatermark">右上角水印文本</label>
-                        <input type="text" id="rightTopWatermark" value="大浪">
+                <!-- 简化的参数设置 -->
+                <div class="form-group">
+                    <label>快速设置</label>
+                    <div class="simple-settings">
+                        <div>
+                            <label for="templateSelect">选择模板</label>
+                            <select id="templateSelect">
+                                <option value="none">无模板</option>
+                                <option value="classic">经典模式</option>
+                                <option value="modern">现代风格</option>
+                                <option value="funny">搞怪风格</option>
+                                <option value="elegant">优雅风格</option>
+                                <option value="bold">醒目风格</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="filterPreset">图片滤镜</label>
+                            <select id="filterPreset">
+                                <option value="none">无滤镜</option>
+                                <option value="vintage">复古</option>
+                                <option value="sepia">怀旧</option>
+                                <option value="blackwhite">黑白</option>
+                                <option value="cool">冷色调</option>
+                                <option value="warm">暖色调</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label for="rightBottomWatermark">右下角水印文本</label>
-                        <input type="text" id="rightBottomWatermark" value="公众号 - 大浪">
+                </div>
+                
+                <!-- 折叠面板：高级设置 -->
+                <div class="collapse-panel">
+                    <div class="collapse-header" onclick="toggleCollapse('advancedSettings')">
+                        <span>高级设置</span>
+                        <span class="collapse-icon" id="advancedSettingsIcon">▼</span>
+                    </div>
+                    <div class="collapse-content" id="advancedSettings">
+                        <div class="form-group">
+                            <label>参数设置</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label for="charHeight">字符高度(px)</label>
+                                    <input type="number" id="charHeight" value="40" min="10" max="100">
+                                </div>
+                                <div>
+                                    <label for="fontSize">字体大小(px)</label>
+                                    <input type="number" id="fontSize" value="20" min="5" max="50">
+                                </div>
+                                <div>
+                                    <label for="fontFamily">字体选择</label>
+                                    <select id="fontFamily">
+                                        <option value="Microsoft YaHei, Arial, sans-serif">微软雅黑</option>
+                                        <option value="SimSun, serif">宋体</option>
+                                        <option value="SimHei, sans-serif">黑体</option>
+                                        <option value="KaiTi, serif">楷体</option>
+                                        <option value="Courier New, monospace">等宽字体</option>
+                                        <option value="Georgia, serif">Georgia</option>
+                                        <option value="Times New Roman, serif">Times New Roman</option>
+                                        <option value="Arial, sans-serif">Arial</option>
+                                        <option value="Verdana, sans-serif">Verdana</option>
+                                        <option value="Impact, sans-serif">Impact</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="textAlign">文字对齐</label>
+                                    <select id="textAlign">
+                                        <option value="center">居中</option>
+                                        <option value="left">左对齐</option>
+                                        <option value="right">右对齐</option>
+                                        <option value="justify">两端对齐</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>颜色设置</label>
+                            <div class="color-pickers">
+                                <div class="color-picker-group">
+                                    <label for="fontColor">字体颜色</label>
+                                    <input type="color" id="fontColor" value="#33ccff">
+                                </div>
+                                <div class="color-picker-group">
+                                    <label for="strokeColor">轮廓颜色</label>
+                                    <input type="color" id="strokeColor" value="#000000">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>文字阴影设置</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="color-picker-group">
+                                    <label for="shadowColor">阴影颜色</label>
+                                    <input type="color" id="shadowColor" value="rgba(0, 0, 0, 0.5)">
+                                </div>
+                                <div>
+                                    <label for="shadowBlur">阴影模糊度</label>
+                                    <input type="range" id="shadowBlur" min="0" max="20" value="3" step="1">
+                                    <span id="shadowBlurValue">3px</span>
+                                </div>
+                                <div>
+                                    <label for="shadowOffsetX">阴影X偏移</label>
+                                    <input type="range" id="shadowOffsetX" min="-20" max="20" value="2" step="1">
+                                    <span id="shadowOffsetXValue">2px</span>
+                                </div>
+                                <div>
+                                    <label for="shadowOffsetY">阴影Y偏移</label>
+                                    <input type="range" id="shadowOffsetY" min="-20" max="20" value="2" step="1">
+                                    <span id="shadowOffsetYValue">2px</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>文字渐变设置</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label for="gradientType">渐变类型</label>
+                                    <select id="gradientType">
+                                        <option value="linear">线性渐变</option>
+                                        <option value="radial">径向渐变</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="gradientAngle">渐变角度</label>
+                                    <input type="range" id="gradientAngle" min="0" max="360" value="0" step="15">
+                                    <span id="gradientAngleValue">0°</span>
+                                </div>
+                                <div class="color-picker-group">
+                                    <label for="gradientColor1">渐变颜色1</label>
+                                    <input type="color" id="gradientColor1" value="#33ccff">
+                                </div>
+                                <div class="color-picker-group">
+                                    <label for="gradientColor2">渐变颜色2</label>
+                                    <input type="color" id="gradientColor2" value="#ff66cc">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>图片滤镜设置</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                                <div>
+                                    <label for="brightness">亮度</label>
+                                    <input type="range" id="brightness" min="0" max="200" value="100" step="5">
+                                    <span id="brightnessValue">100%</span>
+                                </div>
+                                <div>
+                                    <label for="contrast">对比度</label>
+                                    <input type="range" id="contrast" min="0" max="200" value="100" step="5">
+                                    <span id="contrastValue">100%</span>
+                                </div>
+                                <div>
+                                    <label for="saturation">饱和度</label>
+                                    <input type="range" id="saturation" min="0" max="200" value="100" step="5">
+                                    <span id="saturationValue">100%</span>
+                                </div>
+                                <div>
+                                    <label for="hueRotate">色相旋转</label>
+                                    <input type="range" id="hueRotate" min="0" max="360" value="0" step="15">
+                                    <span id="hueRotateValue">0°</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>图片裁剪设置</label>
+                            <div>
+                                <label for="cropRatio">裁剪比例</label>
+                                <select id="cropRatio">
+                                    <option value="original">原始比例</option>
+                                    <option value="1:1">1:1 正方形</option>
+                                    <option value="4:3">4:3 标准</option>
+                                    <option value="16:9">16:9 宽屏</option>
+                                    <option value="3:4">3:4 竖屏</option>
+                                    <option value="9:16">9:16 手机</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="watermark-options">
+                            <label><input type="checkbox" id="showRightTopWatermark" checked> 显示右上角水印</label>
+                            <label><input type="checkbox" id="showRightBottomWatermark" checked> 显示右下角水印</label>
+                            <div style="margin-top: 10px;">
+                                <label for="rightTopWatermark">右上角水印文本</label>
+                                <input type="text" id="rightTopWatermark" value="大浪">
+                            </div>
+                            <div>
+                                <label for="rightBottomWatermark">右下角水印文本</label>
+                                <input type="text" id="rightBottomWatermark" value="公众号 - 大浪">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -266,16 +483,50 @@
     <canvas id="canvas"></canvas>
     
     <script>
+        // 折叠面板切换函数
+        function toggleCollapse(panelId) {
+            const content = document.getElementById(panelId);
+            const icon = document.getElementById(panelId + 'Icon');
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+        
         // 获取DOM元素
         const imageUpload = document.getElementById('imageUpload');
         const selectFileBtn = document.getElementById('selectFileBtn');
         const fileName = document.getElementById('fileName');
         const charHeight = document.getElementById('charHeight');
         const fontSize = document.getElementById('fontSize');
+        const fontFamily = document.getElementById('fontFamily');
+        const textAlign = document.getElementById('textAlign');
         const fontColor = document.getElementById('fontColor');
         const strokeColor = document.getElementById('strokeColor');
+        const shadowColor = document.getElementById('shadowColor');
+        const shadowBlur = document.getElementById('shadowBlur');
+        const shadowBlurValue = document.getElementById('shadowBlurValue');
+        const shadowOffsetX = document.getElementById('shadowOffsetX');
+        const shadowOffsetXValue = document.getElementById('shadowOffsetXValue');
+        const shadowOffsetY = document.getElementById('shadowOffsetY');
+        const shadowOffsetYValue = document.getElementById('shadowOffsetYValue');
+        const gradientType = document.getElementById('gradientType');
+        const gradientAngle = document.getElementById('gradientAngle');
+        const gradientAngleValue = document.getElementById('gradientAngleValue');
+        const gradientColor1 = document.getElementById('gradientColor1');
+        const gradientColor2 = document.getElementById('gradientColor2');
+        const filterPreset = document.getElementById('filterPreset');
+        const brightness = document.getElementById('brightness');
+        const brightnessValue = document.getElementById('brightnessValue');
+        const contrast = document.getElementById('contrast');
+        const contrastValue = document.getElementById('contrastValue');
+        const saturation = document.getElementById('saturation');
+        const saturationValue = document.getElementById('saturationValue');
+        const hueRotate = document.getElementById('hueRotate');
+        const hueRotateValue = document.getElementById('hueRotateValue');
+        const cropRatio = document.getElementById('cropRatio');
+        const templateSelect = document.getElementById('templateSelect');
         const captionText = document.getElementById('captionText');
         const generateBtn = document.getElementById('generateBtn');
+        const aiGenerateBtn = document.getElementById('aiGenerateBtn');
         const saveBtn = document.getElementById('saveBtn');
         const previewImage = document.getElementById('previewImage');
         const previewPlaceholder = document.getElementById('previewPlaceholder');
@@ -314,8 +565,330 @@
             }
         });
         
+        // 阴影参数变化事件
+        shadowBlur.addEventListener('input', () => {
+            shadowBlurValue.textContent = shadowBlur.value + 'px';
+        });
+        
+        shadowOffsetX.addEventListener('input', () => {
+            shadowOffsetXValue.textContent = shadowOffsetX.value + 'px';
+        });
+        
+        shadowOffsetY.addEventListener('input', () => {
+            shadowOffsetYValue.textContent = shadowOffsetY.value + 'px';
+        });
+        
+        // 渐变参数变化事件
+        gradientAngle.addEventListener('input', () => {
+            gradientAngleValue.textContent = gradientAngle.value + '°';
+        });
+        
+        // 滤镜参数变化事件
+        brightness.addEventListener('input', () => {
+            brightnessValue.textContent = brightness.value + '%';
+        });
+        
+        contrast.addEventListener('input', () => {
+            contrastValue.textContent = contrast.value + '%';
+        });
+        
+        saturation.addEventListener('input', () => {
+            saturationValue.textContent = saturation.value + '%';
+        });
+        
+        hueRotate.addEventListener('input', () => {
+            hueRotateValue.textContent = hueRotate.value + '°';
+        });
+        
+        // 预设滤镜选择事件
+        filterPreset.addEventListener('change', () => {
+            const preset = filterPreset.value;
+            applyFilterPreset(preset);
+        });
+        
+        // 模板选择事件
+        templateSelect.addEventListener('change', () => {
+            const template = templateSelect.value;
+            applyTemplate(template);
+        });
+        
         generateBtn.addEventListener('click', generateCaptionImage);
         saveBtn.addEventListener('click', saveImage);
+        
+        // AI生成搞笑字幕功能
+        aiGenerateBtn.addEventListener('click', () => {
+            if (!originalImage) {
+                alert('请先上传图片！');
+                return;
+            }
+            
+            // 模拟AI生成过程
+            aiGenerateBtn.textContent = '生成中...';
+            aiGenerateBtn.disabled = true;
+            
+            setTimeout(() => {
+                const funnyCaptions = [
+                    '今天的鱼怎么还没上钩？难道它们也在过周末？',
+                    '我不是胖，是可爱到膨胀！',
+                    '别打扰我，我正在思考猫生哲学',
+                    '今天天气真好，适合睡觉和发呆',
+                    '为什么人类总是喜欢拍我？难道我是明星？',
+                    '鱼干在哪里？我闻到了它的味道！',
+                    '这个盒子看起来不错，我要钻进去',
+                    '人类的床就是比我的猫窝舒服',
+                    '为什么我的尾巴总是跟着我？',
+                    '我不是懒，我是在保存体力',
+                    '今天的太阳真晒，适合躲在阴凉处',
+                    '这个玩具一点都不好玩，我要新的！',
+                    '为什么人类总是要上班？不如陪我玩',
+                    '我要吃鱼！吃鱼！吃鱼！重要的事情说三遍',
+                    '别摸我的肚子，我会生气的！',
+                    '我是一只高贵的猫，才不要理你',
+                    '这个沙发不错，适合我躺一辈子',
+                    '为什么我的猫粮总是不够吃？',
+                    '我要出去！我要看看外面的世界',
+                    '人类的手机有什么好看的？不如看我',
+                    '我不是故意打翻杯子的，是杯子先动的手',
+                    '今天我要当一只安静的美男子',
+                    '为什么人类总是要洗澡？我讨厌水！',
+                    '我要睡觉了，别打扰我',
+                    '这个窗帘真好玩，我要抓它！',
+                    '我不是贪吃，我是在检查食物是否安全',
+                    '为什么人类总是要穿衣服？我就不用',
+                    '今天的风真舒服，适合吹毛',
+                    '我要爬到最高的地方，看看这个家',
+                    '别抢我的玩具！这是我的！',
+                    '人类的零食看起来很好吃，我要尝一口',
+                    '为什么我的猫砂盆总是要清理？',
+                    '我要晒太阳！晒太阳！晒太阳！',
+                    '这个纸箱比我的猫窝舒服多了',
+                    '我不是故意抓沙发的，是沙发先诱惑我的',
+                    '今天我要当一只高冷的猫',
+                    '为什么人类总是要睡觉？不如陪我玩',
+                    '我要吃鱼干！鱼干！鱼干！',
+                    '别摸我的头，我会生气的！',
+                    '这个世界真美好，除了洗澡',
+                    '我要钻到床底下，谁也找不到我',
+                    '为什么人类总是要工作？不如陪我睡觉',
+                    '我不是懒，我是在思考人生',
+                    '今天的猫粮真好吃，我要多吃点',
+                    '别打扰我，我正在打盹',
+                    '这个玩具真好玩，我要玩一整天',
+                    '为什么人类总是要出门？不如在家陪我',
+                    '我要爬到窗帘上，看看外面的世界',
+                    '别抢我的鱼干！这是我的！',
+                    '我是一只可爱的猫，快来摸我',
+                    '今天的天气真糟，适合睡觉',
+                    '为什么我的尾巴总是自己动？',
+                    '我要吃鱼！吃鱼！吃鱼！',
+                    '别摸我的肚子，我会挠你的！',
+                    '这个沙发真软，适合我躺一辈子',
+                    '为什么人类总是要玩手机？不如陪我玩',
+                    '我不是贪吃，我是在帮你消灭零食',
+                    '今天我要当一只活泼的猫',
+                    '为什么人类总是要穿鞋子？我就不用',
+                    '我要晒太阳！晒太阳！晒太阳！',
+                    '这个纸箱真好玩，我要钻进去',
+                    '别抢我的玩具！这是我的！',
+                    '我要吃鱼干！鱼干！鱼干！',
+                    '别摸我的头，我会生气的！',
+                    '这个世界真美好，除了洗澡',
+                    '我要钻到床底下，谁也找不到我',
+                    '为什么人类总是要工作？不如陪我睡觉',
+                    '我不是懒，我是在思考人生',
+                    '今天的猫粮真好吃，我要多吃点',
+                    '别打扰我，我正在打盹',
+                    '这个玩具真好玩，我要玩一整天',
+                    '为什么人类总是要出门？不如在家陪我',
+                    '我要爬到窗帘上，看看外面的世界',
+                    '别抢我的鱼干！这是我的！',
+                    '我是一只可爱的猫，快来摸我',
+                    '今天的天气真糟，适合睡觉',
+                    '为什么我的尾巴总是自己动？',
+                    '我要吃鱼！吃鱼！吃鱼！',
+                    '别摸我的肚子，我会挠你的！',
+                    '这个沙发真软，适合我躺一辈子',
+                    '为什么人类总是要玩手机？不如陪我玩',
+                    '我不是贪吃，我是在帮你消灭零食',
+                    '今天我要当一只活泼的猫',
+                    '为什么人类总是要穿鞋子？我就不用',
+                    '我要晒太阳！晒太阳！晒太阳！',
+                    '这个纸箱真好玩，我要钻进去',
+                    '别抢我的玩具！这是我的！',
+                    '我要吃鱼干！鱼干！鱼干！',
+                    '别摸我的头，我会生气的！',
+                    '这个世界真美好，除了洗澡',
+                    '我要钻到床底下，谁也找不到我',
+                    '为什么人类总是要工作？不如陪我睡觉',
+                    '我不是懒，我是在思考人生',
+                    '今天的猫粮真好吃，我要多吃点',
+                    '别打扰我，我正在打盹',
+                    '这个玩具真好玩，我要玩一整天'
+                ];
+                
+                const randomCaption = funnyCaptions[Math.floor(Math.random() * funnyCaptions.length)];
+                captionText.value = randomCaption;
+                aiGenerateBtn.textContent = 'AI生成搞笑字幕';
+                aiGenerateBtn.disabled = false;
+            }, 1500);
+        });
+        
+        // 应用预设滤镜
+        function applyFilterPreset(preset) {
+            const presets = {
+                vintage: { brightness: 110, contrast: 120, saturation: 80, hueRotate: 10 },
+                sepia: { brightness: 105, contrast: 110, saturation: 60, hueRotate: 20 },
+                blackwhite: { brightness: 100, contrast: 120, saturation: 0, hueRotate: 0 },
+                cool: { brightness: 100, contrast: 100, saturation: 120, hueRotate: 180 },
+                warm: { brightness: 105, contrast: 105, saturation: 110, hueRotate: 30 },
+                bright: { brightness: 130, contrast: 110, saturation: 110, hueRotate: 0 },
+                dark: { brightness: 70, contrast: 120, saturation: 80, hueRotate: 0 },
+                none: { brightness: 100, contrast: 100, saturation: 100, hueRotate: 0 }
+            };
+            
+            const settings = presets[preset] || presets.none;
+            
+            // 更新滑块值
+            brightness.value = settings.brightness;
+            contrast.value = settings.contrast;
+            saturation.value = settings.saturation;
+            hueRotate.value = settings.hueRotate;
+            
+            // 更新显示值
+            brightnessValue.textContent = settings.brightness + '%';
+            contrastValue.textContent = settings.contrast + '%';
+            saturationValue.textContent = settings.saturation + '%';
+            hueRotateValue.textContent = settings.hueRotate + '°';
+        }
+        
+        // 应用模板
+        function applyTemplate(template) {
+            const templates = {
+                classic: {
+                    fontFamily: 'SimSun, serif',
+                    fontSize: 24,
+                    fontColor: '#ffffff',
+                    strokeColor: '#000000',
+                    textAlign: 'center',
+                    shadowColor: 'rgba(0, 0, 0, 0.6)',
+                    shadowBlur: 5,
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2,
+                    gradientType: 'linear',
+                    gradientColor1: '#ffffff',
+                    gradientColor2: '#cccccc',
+                    gradientAngle: 0,
+                    filterPreset: 'vintage'
+                },
+                modern: {
+                    fontFamily: 'Microsoft YaHei, Arial, sans-serif',
+                    fontSize: 22,
+                    fontColor: '#33ccff',
+                    strokeColor: '#000000',
+                    textAlign: 'left',
+                    shadowColor: 'rgba(0, 0, 0, 0.5)',
+                    shadowBlur: 3,
+                    shadowOffsetX: 1,
+                    shadowOffsetY: 1,
+                    gradientType: 'linear',
+                    gradientColor1: '#33ccff',
+                    gradientColor2: '#ff66cc',
+                    gradientAngle: 90,
+                    filterPreset: 'cool'
+                },
+                funny: {
+                    fontFamily: 'Impact, sans-serif',
+                    fontSize: 28,
+                    fontColor: '#ff0000',
+                    strokeColor: '#ffffff',
+                    textAlign: 'center',
+                    shadowColor: 'rgba(0, 0, 0, 0.8)',
+                    shadowBlur: 8,
+                    shadowOffsetX: 3,
+                    shadowOffsetY: 3,
+                    gradientType: 'radial',
+                    gradientColor1: '#ff0000',
+                    gradientColor2: '#ffff00',
+                    gradientAngle: 0,
+                    filterPreset: 'bright'
+                },
+                elegant: {
+                    fontFamily: 'KaiTi, serif',
+                    fontSize: 20,
+                    fontColor: '#ffffff',
+                    strokeColor: '#333333',
+                    textAlign: 'center',
+                    shadowColor: 'rgba(0, 0, 0, 0.7)',
+                    shadowBlur: 4,
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2,
+                    gradientType: 'linear',
+                    gradientColor1: '#ffffff',
+                    gradientColor2: '#eeeeee',
+                    gradientAngle: 45,
+                    filterPreset: 'sepia'
+                },
+                bold: {
+                    fontFamily: 'Arial Black, sans-serif',
+                    fontSize: 26,
+                    fontColor: '#ffff00',
+                    strokeColor: '#000000',
+                    textAlign: 'center',
+                    shadowColor: 'rgba(0, 0, 0, 0.9)',
+                    shadowBlur: 6,
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2,
+                    gradientType: 'linear',
+                    gradientColor1: '#ffff00',
+                    gradientColor2: '#ff9900',
+                    gradientAngle: 180,
+                    filterPreset: 'dark'
+                },
+                none: {
+                    fontFamily: 'Microsoft YaHei, Arial, sans-serif',
+                    fontSize: 20,
+                    fontColor: '#33ccff',
+                    strokeColor: '#000000',
+                    textAlign: 'center',
+                    shadowColor: 'rgba(0, 0, 0, 0.5)',
+                    shadowBlur: 3,
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2,
+                    gradientType: 'linear',
+                    gradientColor1: '#33ccff',
+                    gradientColor2: '#ff66cc',
+                    gradientAngle: 0,
+                    filterPreset: 'none'
+                }
+            };
+            
+            const templateSettings = templates[template] || templates.none;
+            
+            // 更新模板参数
+            fontFamily.value = templateSettings.fontFamily;
+            fontSize.value = templateSettings.fontSize;
+            fontColor.value = templateSettings.fontColor;
+            strokeColor.value = templateSettings.strokeColor;
+            textAlign.value = templateSettings.textAlign;
+            shadowColor.value = templateSettings.shadowColor;
+            shadowBlur.value = templateSettings.shadowBlur;
+            shadowOffsetX.value = templateSettings.shadowOffsetX;
+            shadowOffsetY.value = templateSettings.shadowOffsetY;
+            gradientType.value = templateSettings.gradientType;
+            gradientColor1.value = templateSettings.gradientColor1;
+            gradientColor2.value = templateSettings.gradientColor2;
+            gradientAngle.value = templateSettings.gradientAngle;
+            filterPreset.value = templateSettings.filterPreset;
+            
+            // 更新显示值
+            shadowBlurValue.textContent = templateSettings.shadowBlur + 'px';
+            shadowOffsetXValue.textContent = templateSettings.shadowOffsetX + 'px';
+            shadowOffsetYValue.textContent = templateSettings.shadowOffsetY + 'px';
+            gradientAngleValue.textContent = templateSettings.gradientAngle + '°';
+            
+            // 应用滤镜预设
+            applyFilterPreset(templateSettings.filterPreset);
+        }
         
         // 生成字幕图片
         function generateCaptionImage() {
@@ -338,52 +911,169 @@
             const lines = text.split('\n');
             const lineHeight = parseInt(charHeight.value) || 40;
             
-            // 设置Canvas尺寸，包含原图和字幕区域
-            canvas.width = imgWidth;
-            canvas.height = imgHeight + lineHeight * lines.length;
+            // 计算裁剪后的图片尺寸
+            let cropWidth = imgWidth;
+            let cropHeight = imgHeight;
+            const cropRatioVal = cropRatio.value || 'original';
             
-            // 绘制原始图片
-            ctx.drawImage(originalImage, 0, 0);
+            if (cropRatioVal !== 'original') {
+                const [widthRatio, heightRatio] = cropRatioVal.split(':').map(Number);
+                const targetRatio = widthRatio / heightRatio;
+                const currentRatio = imgWidth / imgHeight;
+                
+                if (currentRatio > targetRatio) {
+                    // 原图更宽，按高度裁剪宽度
+                    cropWidth = imgHeight * targetRatio;
+                } else {
+                    // 原图更高，按宽度裁剪高度
+                    cropHeight = imgWidth / targetRatio;
+                }
+            }
+            
+            // 计算裁剪区域的起始坐标（居中裁剪）
+            const cropX = (imgWidth - cropWidth) / 2;
+            const cropY = (imgHeight - cropHeight) / 2;
+            
+            // 设置Canvas尺寸，包含裁剪后的图片和字幕区域
+            canvas.width = cropWidth;
+            canvas.height = cropHeight + lineHeight * lines.length;
+            
+            // 应用图片滤镜
+            const brightnessVal = parseInt(brightness.value) / 100 || 1;
+            const contrastVal = parseInt(contrast.value) / 100 || 1;
+            const saturationVal = parseInt(saturation.value) / 100 || 1;
+            const hueRotateVal = parseInt(hueRotate.value) || 0;
+            
+            // 设置Canvas滤镜
+            ctx.filter = `
+                brightness(${brightnessVal})
+                contrast(${contrastVal})
+                saturate(${saturationVal})
+                hue-rotate(${hueRotateVal}deg)
+            `;
+            
+            // 绘制裁剪后的图片（应用滤镜）
+            ctx.drawImage(
+                originalImage,  // 源图片
+                cropX, cropY,   // 源图片裁剪起始坐标
+                cropWidth, cropHeight,  // 源图片裁剪尺寸
+                0, 0,          // 目标Canvas起始坐标
+                cropWidth, cropHeight   // 目标Canvas尺寸
+            );
+            
+            // 重置滤镜，避免影响后续绘制
+            ctx.filter = 'none';
             
             // 创建临时canvas用于保存图片切片
             const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = imgWidth;
+            tempCanvas.width = cropWidth; // 使用裁剪后的宽度
             tempCanvas.height = lineHeight;
             const tempCtx = tempCanvas.getContext('2d');
             
             // 为每行字幕创建独立的背景区域
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
-                const currentY = imgHeight + i * lineHeight;
+                const currentY = cropHeight + i * lineHeight;
                 
                 // 复制原图底部相应位置的图片切片
                 // 对于所有行，都使用原图底部的切片
-                const sliceY = Math.max(0, imgHeight - lineHeight);
-                tempCtx.clearRect(0, 0, imgWidth, lineHeight);
-                tempCtx.drawImage(originalImage, 0, sliceY, imgWidth, lineHeight, 0, 0, imgWidth, lineHeight);
+                const sliceY = Math.max(cropY, cropY + cropHeight - lineHeight);
+                tempCtx.clearRect(0, 0, cropWidth, lineHeight);
+                tempCtx.drawImage(
+                    originalImage, 
+                    cropX, sliceY,   // 源图片裁剪区域
+                    cropWidth, lineHeight,  // 源图片裁剪尺寸
+                    0, 0,          // 目标Canvas起始坐标
+                    cropWidth, lineHeight   // 目标Canvas尺寸
+                );
                 
                 // 绘制图片背景到Canvas
                 ctx.drawImage(tempCanvas, 0, currentY);
                 
                 // 移除背景颜色，让字幕直接显示在图片背景上
                 
-                // 绘制白色文字带黑色描边
+                // 设置字体样式
                 const fontSizeVal = parseInt(fontSize.value) || 20;
-                ctx.font = fontSizeVal + 'px Microsoft YaHei, Arial, sans-serif';
-                ctx.textAlign = 'center';
+                const fontFamilyVal = fontFamily.value || 'Microsoft YaHei, Arial, sans-serif';
+                const textAlignVal = textAlign.value || 'center';
+                ctx.font = fontSizeVal + 'px ' + fontFamilyVal;
+                ctx.textAlign = textAlignVal;
                 ctx.textBaseline = 'middle';
+                
+                // 设置文字阴影
+                const shadowColorVal = shadowColor.value || 'rgba(0, 0, 0, 0.5)';
+                const shadowBlurVal = parseInt(shadowBlur.value) || 3;
+                const shadowOffsetXVal = parseInt(shadowOffsetX.value) || 2;
+                const shadowOffsetYVal = parseInt(shadowOffsetY.value) || 2;
+                ctx.shadowColor = shadowColorVal;
+                ctx.shadowBlur = shadowBlurVal;
+                ctx.shadowOffsetX = shadowOffsetXVal;
+                ctx.shadowOffsetY = shadowOffsetYVal;
                 
                 // 计算文字位置，稍微偏上以获得更好的视觉效果
                 const textY = currentY + lineHeight / 2;
                 
-                // 绘制文字描边
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = fontSizeVal / 8;
-                ctx.strokeText(line, imgWidth / 2, textY);
+                // 计算文字X坐标，根据对齐方式调整
+                let textX;
+                switch(textAlignVal) {
+                    case 'left':
+                        textX = 20; // 左侧留边距
+                        break;
+                    case 'right':
+                        textX = imgWidth - 20; // 右侧留边距
+                        break;
+                    case 'justify':
+                    case 'center':
+                    default:
+                        textX = imgWidth / 2;
+                        break;
+                }
                 
-                // 绘制文字填充 - 使用和参考图片一样的青蓝色
-                ctx.fillStyle = '#33ccff';
-                ctx.fillText(line, imgWidth / 2, textY);
+                // 绘制文字描边
+                ctx.strokeStyle = strokeColor.value || '#000000';
+                ctx.lineWidth = fontSizeVal / 8;
+                ctx.strokeText(line, textX, textY);
+                
+                // 创建渐变填充
+                let gradient;
+                const gradientTypeVal = gradientType.value || 'linear';
+                const gradientColor1Val = gradientColor1.value || '#33ccff';
+                const gradientColor2Val = gradientColor2.value || '#ff66cc';
+                
+                if (gradientTypeVal === 'radial') {
+                    // 创建径向渐变
+                    gradient = ctx.createRadialGradient(
+                        textX, textY, 0,  // 渐变中心
+                        textX, textY, fontSizeVal * 2  // 渐变半径
+                    );
+                } else {
+                    // 创建线性渐变
+                    const angle = parseInt(gradientAngle.value) || 0;
+                    const radians = angle * Math.PI / 180;
+                    
+                    // 计算渐变线的起点和终点
+                    const length = Math.max(imgWidth, canvas.height) * 2;
+                    const startX = textX - Math.cos(radians) * length / 2;
+                    const startY = textY - Math.sin(radians) * length / 2;
+                    const endX = textX + Math.cos(radians) * length / 2;
+                    const endY = textY + Math.sin(radians) * length / 2;
+                    
+                    gradient = ctx.createLinearGradient(startX, startY, endX, endY);
+                }
+                
+                // 添加渐变颜色
+                gradient.addColorStop(0, gradientColor1Val);
+                gradient.addColorStop(1, gradientColor2Val);
+                
+                // 绘制文字填充
+                ctx.fillStyle = gradient;
+                ctx.fillText(line, textX, textY);
+                
+                // 重置阴影设置，避免影响其他绘制
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
                 
                 // 绘制分割线（除了最后一行）
                 if (i < lines.length - 1) {
